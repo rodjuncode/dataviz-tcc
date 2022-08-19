@@ -1,7 +1,9 @@
 // SYSTEM
-const SUM_CHECK = 75214;
+const SUM_CHECK = 75214; // if JSON file is changed, this needs to be update!!!
+const SIZE = 20;
 let alunos;
 let json_loaded = false;
+
 
 fetch('data/alunos.json')
     .then(response => response.json())
@@ -11,14 +13,23 @@ fetch('data/alunos.json')
 
 new Q5("global"); // initialize q5js
 function setup() {
-    createCanvas(500,2000);
+    createCanvas(windowWidth,windowHeight);
 }
 function draw() {
     if (json_loaded) {
         background(200);
-        for (a in alunos) {
-            if (a['ano'] = 2000) {
-                rect(10,10,10,10);
+        let x = 0;
+        let y = 0;
+        for (let i = 0; i < alunos.length; i++) {
+            if (alunos[i]['ano'] == 2000) {
+                let c = floor(map(alunos[i]['cestas_basicas_min'],0, 100, 0, 255));
+                fill(c);
+                rect(x,y,SIZE,SIZE);
+                x += SIZE;
+                if (x > width) {
+                    x = 0;
+                    y += SIZE;
+                }
             }
         }
         if (mouseIsPressed) {
