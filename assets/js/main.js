@@ -3,7 +3,7 @@ const SUM_CHECK = 75214; // if JSON file is changed, this needs to be update!!!
 const SIZE = 20;
 let alunos;
 let json_loaded = false;
-
+let _s = 0;
 
 fetch('data/alunos.json')
     .then(response => response.json())
@@ -35,7 +35,9 @@ function draw() {
         if (mouseIsPressed) {
             ellipse(50, 50, 50, 50);
         } else {
-            rect(25, 25, 50, 50);
+            rect(_s, 25, 50, 50);
+            _s += 25;
+            if (_s > width) _s = 0;
         }
     } else {
         if (alunos === undefined || alunos.length != SUM_CHECK) {
