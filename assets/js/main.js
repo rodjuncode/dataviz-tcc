@@ -1,10 +1,17 @@
 // SYSTEM
 const SUM_CHECK = 75214; // if JSON file is changed, this needs to be update!!!
-const SIZE = 20;
+const SIZE = 40;
 let alunos_json;
 let json_loaded = false;
 let alunos = [];
-
+let stickers = {};
+let palette = {
+    'Vestibular Unicamp': '#F18B64',
+    'ENEM-Unicamp': '#FFD930',
+    'Profis': '#8DA0CB',
+    'Vagas Olímpicas': '#DF8BB9',
+    'Vestibular Indígena': '#E25759'
+}
 
 // temp
 let _s = 0;
@@ -16,14 +23,26 @@ fetch('data/alunos.json')
         alunos_json = _.values(data);
     });
 
+console.log('[boot] Loading q5.js...');
 new Q5("global"); // initialize q5js
+console.log('[boot] Loaded q5.js!');
+
 
 function preload() {
     console.log('[boot] pre-loading stuff...')
+    stickers['branca'] = loadImage('assets/img/stickers/branca.png');
+    stickers['preta'] = loadImage('assets/img/stickers/preta.png');
+    stickers['parda'] = loadImage('assets/img/stickers/parda.png');
+    stickers['amarela'] = loadImage('assets/img/stickers/amarela.png');
+    stickers['indígena'] = loadImage('assets/img/stickers/indigena.png');
+    stickers['em branco'] = loadImage('assets/img/stickers/nao-declarada.png');
+    stickers['não declarada'] = loadImage('assets/img/stickers/nao-declarada.png');
+    stickers['não perguntado'] = loadImage('assets/img/stickers/nao-perguntado.png');
+    console.log('[boot] pre-loaded all good!')
 }
 
 function setup() {
-    createCanvas(windowWidth,windowHeight);
+    createCanvas(windowWidth,5000);
 }
 
 function draw() {
@@ -32,15 +51,11 @@ function draw() {
         let x = 0;
         let y = 0;
         for (let i = 0; i < alunos.length; i++) {
-            if (alunos[i].ano == 2000) {
-                let c = floor(map(alunos[i].cestas_basicas,0, 100, 0, 255));
-                fill(c);
-                rect(x,y,SIZE,SIZE);
-                x += SIZE;
-                if (x > width) {
-                    x = 0;
-                    y += SIZE;
-                }
+            alunos[i].show(x,y,SIZE);
+            x += SIZE;
+            if (x + SIZE > width) {
+                x = 0;
+                y += SIZE;
             }
         }
         if (mouseIsPressed) {
@@ -58,6 +73,7 @@ function draw() {
             json_loaded = true;
             console.log('[boot] initializing objects...')
             for (let i = 0; i < alunos_json.length; i++) {
+                if (alunos_json[i]['ano'] == 2019)
                 alunos.push(new Tag(alunos_json[i]));
             }
             alunos_json = null;
