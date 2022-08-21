@@ -13,10 +13,12 @@ html, body {
 .aluno {
     margin: 0;
     padding: 0;
-    height: 40px;
-    width: 40px;
+}
+
+.aluno:hover {
+    background: white;
 }
 
 .ensino-particular {
-    background: rgba(255, 255, 255, .2);
+    background: rgba(255, 255, 255, .1);
 }
