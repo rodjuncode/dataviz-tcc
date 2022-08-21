@@ -1,9 +1,22 @@
 html, body { 
+    background: #112035;
     margin: 0;
     padding: 0;  
 }
 
-canvas { 
-    display: block; 
+#viz {
+    display: inline-flex;
+    flex-wrap: wrap;
+    /*width: 800px;*/
+}
+
+.aluno {
     margin: 0;
+    padding: 0;
+    height: 40px;
+    width: 40px;
+}
+
+.ensino-particular {
+    background: rgba(255, 255, 255, .2);
 }
