@@ -9,7 +9,7 @@ html, body {
 
 #app {
     display: flex;
-    flex-flow: column;
+    flex-flow: row;
     height: 100%;    
 }
 
@@ -20,13 +20,32 @@ html, body {
     background: #112035;
 }
 
+#yearNav {
+    display: inline-flex;
+    margin: 0 auto;
+}
+
+select {
+    font-family: 'Poppins', sans-serif;
+}
+
+
+select option {
+    font-family: 'Poppins', sans-serif;
+}
+
+#nav {
+    font-family: 'Poppins', sans-serif;
+    width: 300px;
+}
 .aluno {
     margin: 0;
     padding: 0;
 }
 
 .aluno:hover {
-    opacity: 0.75;
+    opacity: 0.2;
+    cursor: pointer;
 }
 
 .ensino-particular {
@@ -39,8 +58,9 @@ button {
 }
 
 h2#year {
-    color: #FFFFFF;
     font-family: 'Poppins', sans-serif;
-    font-size: 3em;
+    font-size: 3.5em;
     font-weight: 400;
+    margin: 0;
+    width: 150px;
 }

@@ -9,17 +9,20 @@ const _MIN_SIZE = 15;
 let _VIZ_SIZE, _GRID_COLUMNS, _GRID_SIZE;
 
 const _CIRCLE_OPT = .8;
-const _RECT_OPT = .85;
+const _RECT_OPT = 1.2;
 
 const _START_YEAR = 2022;
 const _MAX_YEAR = 2022;
 const _MIN_YEAR = 2000;
 
+const _START_SORT = 'cestas_basicas';
+
 var alunos, viz;
 var size = _START_SIZE;
 var year = _START_YEAR;
+var sortField = _START_SORT;
 
-var colors, sizes, t;
+var colors, sizes, sort;
 
 d3.json('data/alunos.json').then(data => { // loading data
             
@@ -33,11 +36,24 @@ d3.json('data/alunos.json').then(data => { // loading data
     //     .domain([d3.min(alunos, d => d.cestas_basicas), d3.max(alunos, d => d.cestas_basicas)])
     //     .range([.3, .8]);
 
-
-    t = d3.transition()
-        .duration(750)
-        .ease(d3.easeLinear);
-
+    sort = {
+        'cor_raca_autodeclarada' : {
+            'asc' : (a,b) => d3.ascending(a.cor_raca_autodeclarada, b.cor_raca_autodeclarada),
+            'desc' : (a,b) => d3.descending(a.cor_raca_autodeclarada, b.cor_raca_autodeclarada)
+        },
+        'cestas_basicas' : {
+            'asc' : (a,b) => d3.ascending(a.cestas_basicas, b.cestas_basicas),
+            'desc' : (a,b) => d3.descending(a.cestas_basicas, b.cestas_basicas)
+        },
+        'cursou_ensino_medio_publico' : {
+            'asc' : (a,b) => d3.ascending(a.cursou_ensino_medio_publico, b.cursou_ensino_medio_publico),
+            'desc' : (a,b) => d3.descending(a.cursou_ensino_medio_publico, b.cursou_ensino_medio_publico)
+        },
+        'sexo' : {
+            'asc' : (a,b) => d3.ascending(a.sexo, b.sexo),
+            'desc' : (a,b) => d3.descending(a.sexo, b.sexo)
+        }                        
+    }
 
     draw();
 
@@ -57,6 +73,12 @@ function zoomIn() {
         .attr('transform', 'scale(10)')
         .attr('transform-origin', '0 0');
 
+}
+
+
+function sortViz(v) {
+    sortField = v;
+    draw();
 }
 
 function zoomOut() {
@@ -88,12 +110,13 @@ function prevYear() {
 }
 
 function draw() {
-    // clear
+
+    // calculate dimensions
     let vizContainer = d3.select('#viz').node().getBoundingClientRect();
-    console.log(vizContainer)
     let fit = false;
     let nCols = 1;
-    let nData = alunos.filter(d => d.ano === year).length;
+    //let nData = alunos.filter(d => d.ano === year).length;
+    let nData = 3571; // largest set of rows is year 2014.
     while (!fit) {
         let nLines = nData/nCols;
         if (nLines*(vizContainer.width/nCols) > vizContainer.height) {
@@ -108,8 +131,9 @@ function draw() {
 
     sizes = d3.scaleLinear()
         .domain([d3.min(alunos, d => d.cestas_basicas), d3.max(alunos, d => d.cestas_basicas)])
-        .range([_GRID_SIZE/3, _GRID_SIZE]);
+        .range([_GRID_SIZE/4, _GRID_SIZE*.8]);
 
+    // clear
     d3.selectAll("#viz > *").remove();
 
     d3.select('#year').text(year);
@@ -120,16 +144,16 @@ function draw() {
 
    // create a particle for each row in data
     g.selectAll('g')
-        .data(alunos.filter(d => d.ano === year))
+        .data(alunos.filter(d => d.ano === year).sort(sort[sortField]['desc']))
         //.data(alunos)
         .join('g')
         .classed('aluno', true)
-        .attr('transform', (d,i) => 'translate(' + (i%_GRID_COLUMNS)*_GRID_SIZE + ',' + Math.floor(i/_GRID_COLUMNS)*_GRID_SIZE + ')')
-        .append('rect')
-        .attr('width', _GRID_SIZE)
-        .attr('height', _GRID_SIZE)
-        .style('fill', '#FFF')
-        .style('fill-opacity', d => (d.cursou_ensino_medio_publico === 'f' ? 0.1 : 0));
+        .attr('transform', (d,i) => 'translate(' + (i%_GRID_COLUMNS)*_GRID_SIZE + ',' + Math.floor(i/_GRID_COLUMNS)*_GRID_SIZE + ')');
+        // .append('rect')
+        // .attr('width', _GRID_SIZE)
+        // .attr('height', _GRID_SIZE)
+        // .style('fill', '#FFF')
+        // .style('fill-opacity', d => (d.cursou_ensino_medio_publico === 't' ? 0.15 : 0));
         
         viz.call(d3.zoom()
         .extent([[0, 0], [500, 500]])
@@ -145,14 +169,28 @@ function draw() {
         .append(d => document.createElementNS('http://www.w3.org/2000/svg', d.sexo === 'm' ? 'circle' : 'rect'))
         .attr('cx',_GRID_SIZE/2)
         .attr('cy',_GRID_SIZE/2)
-        .attr('r', d => sizes(d.cestas_basicas)/2)
+        .attr('r', d => sizes(d.cestas_basicas)/1.5)
         .attr('x', d => _GRID_SIZE/2 - sizes(d.cestas_basicas)*_RECT_OPT/2)
         .attr('y', d => _GRID_SIZE/2 - sizes(d.cestas_basicas)*_RECT_OPT/2)
         .attr('width', d => sizes(d.cestas_basicas)*_RECT_OPT)
         .attr('height', d => sizes(d.cestas_basicas)*_RECT_OPT)
-        .attr('transform', d => 'rotate(45,' + _GRID_SIZE/2 + ',' + _GRID_SIZE/2 + ')')
-        .style('fill', d => colors(d.cor_raca_autodeclarada));
+        //.attr('transform', d => 'rotate(45,' + _GRID_SIZE/2 + ',' + _GRID_SIZE/2 + ')')
+        .style('fill', d => colors(d.cor_raca_autodeclarada))
+        .style('stroke', d => d.cor_raca_autodeclarada === 'np' ? '#FFF' : 'none');
 
+    // draws stroke
+    viz.selectAll('#viz > svg > g > g')
+        .append(d => document.createElementNS('http://www.w3.org/2000/svg', d.sexo === 'm' ? 'circle' : 'rect'))
+        .attr('cx',_GRID_SIZE/2)
+        .attr('cy',_GRID_SIZE/2)
+        .attr('r', d => sizes(d.cestas_basicas)/2 - 2)
+        .attr('x', d => _GRID_SIZE/2 - sizes(d.cestas_basicas)*_RECT_OPT/2 + 2)
+        .attr('y', d => _GRID_SIZE/2 - sizes(d.cestas_basicas)*_RECT_OPT/2 + 2)
+        .attr('width', d => sizes(d.cestas_basicas)*_RECT_OPT - 4)
+        .attr('height', d => sizes(d.cestas_basicas)*_RECT_OPT - 4)
+        //.attr('transform', d => 'rotate(45,' + _GRID_SIZE/2 + ',' + _GRID_SIZE/2 + ')')
+        .style('fill', d => (d.cursou_ensino_medio_publico === 'f') ? 'none' : '#112035')
+        .style('stroke', d => d.cor_raca_autodeclarada === 'np' ? '#FFF' : 'none');
 
    // draws shapes into each particle
 //    viz.selectAll('.aluno svg')
