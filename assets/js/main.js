@@ -1,6 +1,6 @@
-const _START_SIZE = 30;
+const _START_SIZE = 25;
 const _STEP_SIZE = 10;
-const _MIN_SIZE = 10;
+const _MIN_SIZE = 15;
 
 const _CIRCLE_OPT = .8;
 const _RECT_OPT = .65;
@@ -13,25 +13,48 @@ var alunos;
 var size = _START_SIZE;
 var year = _START_YEAR;
 
+var colors, sizes, t;
+
 d3.json('data/alunos.json').then(data => { // loading data
             
     alunos = _.values(data);
+
+    colors = d3.scaleOrdinal()
+    .domain(['am', 'br', 'in', 'pa', 'pr', 'nd', 'np'])
+    .range(['#F5524E','#B4B1E7','#59A14F','#2B94DD','#FDC361','#7E15FE','#112035']);
+
+    sizes = d3.scaleLinear()
+        .domain([d3.min(alunos, d => d.cestas_basicas), d3.max(alunos, d => d.cestas_basicas)])
+        .range([size*.5, size]);
+
+    t = d3.transition()
+        .duration(750)
+        .ease(d3.easeLinear);
 
     draw();
 
 });
 
 function zoomIn() {
-    size += _STEP_SIZE;
-    draw();
+    // size += _STEP_SIZE;
+    // draw();
+    d3.selectAll("#viz > *").transition()
+        .duration(1500)
+        .style('width', '35px')
+        .style('height', '35px');
+
 }
 
 function zoomOut() {
-    size -= 10;
-    if (size < _MIN_SIZE) {
-        size = _MIN_SIZE;
-    }
-    draw();
+    // size -= 10;
+    // if (size < _MIN_SIZE) {
+    //     size = _MIN_SIZE;
+    // }
+    // draw();
+    d3.selectAll("#viz > *").transition()
+        .duration(1500)
+        .style('width', '25px')
+        .style('height', '25px');
 }
 
 function nextYear() {
@@ -69,25 +92,19 @@ function draw() {
     .style('width', size + 'px')
     .classed('ensino-particular', d => d.cursou_ensino_medio_publico === 'f')
         .append('svg')
-        .attr('height', size)
-        .attr('width', size);  
-
-    // scales
-    const colors = d3.scaleOrdinal()
-        .domain(['am', 'br', 'in', 'pa', 'pr', 'nd', 'np'])
-        .range(['#F5524E','#B4B1E7','#59A14F','#2B94DD','#FDC361','#7E15FE','#112035']);
-
-    const sizes = d3.scaleLinear()
-        .domain([d3.min(alunos, d => d.cestas_basicas), d3.max(alunos, d => d.cestas_basicas)])
-        .range([size*.5, size]);
+        .attr('height', '100%')
+        .attr('width', '100%');  
 
     // draws shapes into each particle
     viz.selectAll('.aluno svg')
         .filter(d => d.sexo === 'm')
         .append('circle')
-        .attr('cx', size/2)
-        .attr('cy', size/2)
-        .attr('r', d => sizes(d.cestas_basicas)/2*_CIRCLE_OPT )
+        // .attr('cx', size/2)
+        // .attr('cy', size/2)
+        .attr('cx', '50%')
+        .attr('cy', '50%')
+        //.attr('r', d => sizes(d.cestas_basicas)/2*_CIRCLE_OPT )
+        .attr('r', '50%')
         .style('fill', d => colors(d.cor_raca_autodeclarada));
 
     viz.selectAll('.aluno svg')
