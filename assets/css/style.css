@@ -38,6 +38,12 @@ select option {
     font-family: 'Poppins', sans-serif;
     width: 300px;
 }
+
+#nav #tag svg {
+    height: 200px;
+    width: 200px;
+}
+
 .aluno {
     margin: 0;
     padding: 0;
