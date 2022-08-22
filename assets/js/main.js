@@ -90,6 +90,7 @@ function prevYear() {
 function draw() {
     // clear
     let vizContainer = d3.select('#viz').node().getBoundingClientRect();
+    console.log(vizContainer)
     let fit = false;
     let nCols = 1;
     let nData = alunos.filter(d => d.ano === year).length;
