@@ -197,8 +197,9 @@ function draw() {
 
         alunos = g.selectAll('g');
         alunos.on("mouseover", function(e, d) {
-            let svg = d3.select('#tag > svg');
-            svg.selectAll('*').remove(); // clear tag
+            let svg = d3.select('#tag > *').remove(); // clear tag
+
+            svg = d3.select('#tag').append('svg').attr("viewBox", [0, 0, _GRID_SIZE, _GRID_SIZE]);
 
             svg.append('rect')
             .attr('x', '0')
@@ -208,27 +209,38 @@ function draw() {
             .style('fill', '#112035');
 
             svg.append(d.sexo === 'm' ? 'circle' : 'rect')
-            .attr('cx',_TAG_SIZE/2)
-            .attr('cy',_TAG_SIZE/2)
-            .attr('r', _TAG_SIZE*sizes(d.cestas_basicas)/1.5)
-            .attr('x', _TAG_SIZE/2 - _TAG_SIZE*sizes(d.cestas_basicas)*_RECT_OPT/2)
-            .attr('y', _TAG_SIZE/2 - _TAG_SIZE*sizes(d.cestas_basicas)*_RECT_OPT/2)
-            .attr('width', _TAG_SIZE*sizes(d.cestas_basicas)*_RECT_OPT)
-            .attr('height', _TAG_SIZE*sizes(d.cestas_basicas)*_RECT_OPT)
+            .attr('cx',_GRID_SIZE/2)
+            .attr('cy',_GRID_SIZE/2)
+            .attr('r', _GRID_SIZE*sizes(d.cestas_basicas)/1.5)
+            .attr('x', _GRID_SIZE/2 - _GRID_SIZE*sizes(d.cestas_basicas)*_RECT_OPT/2)
+            .attr('y', _GRID_SIZE/2 - _GRID_SIZE*sizes(d.cestas_basicas)*_RECT_OPT/2)
+            .attr('width', _GRID_SIZE*sizes(d.cestas_basicas)*_RECT_OPT)
+            .attr('height', _GRID_SIZE*sizes(d.cestas_basicas)*_RECT_OPT)
             .style('fill', colors(d.cor_raca_autodeclarada))
             .style('stroke', d.cor_raca_autodeclarada === 'np' ? '#FFF' : 'none');  
 
             svg.append(d.sexo === 'm' ? 'circle' : 'rect')
-            .attr('cx',_TAG_SIZE/2)
-            .attr('cy',_TAG_SIZE/2)
-            .attr('r', d3.max([_TAG_SIZE*sizes(d.cestas_basicas)/2 - 2, 1]))
-            .attr('x', _TAG_SIZE/2 - _TAG_SIZE*sizes(d.cestas_basicas)*_RECT_OPT/2 + 2)
-            .attr('y', _TAG_SIZE/2 - _TAG_SIZE*sizes(d.cestas_basicas)*_RECT_OPT/2 + 2)
-            .attr('width', d3.max([_TAG_SIZE*sizes(d.cestas_basicas)*_RECT_OPT - 4,1]))
-            .attr('height', d3.max([_TAG_SIZE*sizes(d.cestas_basicas)*_RECT_OPT - 4,1]))
+            .attr('cx',_GRID_SIZE/2)
+            .attr('cy',_GRID_SIZE/2)
+            .attr('r', d3.max([_GRID_SIZE*sizes(d.cestas_basicas)/2 - 2, 1]))
+            .attr('x', _GRID_SIZE/2 - _GRID_SIZE*sizes(d.cestas_basicas)*_RECT_OPT/2 + 2)
+            .attr('y', _GRID_SIZE/2 - _GRID_SIZE*sizes(d.cestas_basicas)*_RECT_OPT/2 + 2)
+            .attr('width', d3.max([_GRID_SIZE*sizes(d.cestas_basicas)*_RECT_OPT - 4,1]))
+            .attr('height', d3.max([_GRID_SIZE*sizes(d.cestas_basicas)*_RECT_OPT - 4,1]))
             .style('fill', d.cursou_ensino_medio_publico === 'f' ? 'none' : '#112035')
             .style('stroke', d.cor_raca_autodeclarada === 'np' ? '#FFF' : 'none');;
             
+
+            let tagDescription = d3.select('#tag > p').text(
+                d.cestas_basicas + ', ' + 
+                d.cor_raca_autodeclarada + ', ' +
+                d.sexo + ', ' +
+                d.cursou_ensino_medio_publico + ', ' +
+                d.ano + ', ' +
+                d.modalidade_ingresso + ', ' +
+                d.paais + ', ' +
+                d.cotas);
+
         });
 
    // draws shapes into each particle
