@@ -213,7 +213,7 @@ function draw() {
         .attr('height', d => d3.max([_GRID_SIZE*sizes(d.cestas_basicas)*_RECT_OPT - 4,1]))
         //.attr('transform', d => 'rotate(45,' + _GRID_SIZE/2 + ',' + _GRID_SIZE/2 + ')')
         .style('fill', d => (d.cursou_ensino_medio_publico === 'f') ? 'none' : '#112035')
-        .style('stroke', d => (d.cursou_ensino_medio_publico === 'f') && d.cor_raca_autodeclarada === 'np' ? '#FFF' : 'none');
+        .style('stroke', d => d.cor_raca_autodeclarada === 'np' ? '#FFF' : 'none');
 
         alunos = g.selectAll('g');
         alunos.on("mouseover", function(e, d) {
@@ -247,9 +247,9 @@ function draw() {
             .attr('y', _GRID_SIZE/2 - _GRID_SIZE*sizes(d.cestas_basicas)*_RECT_OPT/2 + 2)
             .attr('width', d3.max([_GRID_SIZE*sizes(d.cestas_basicas)*_RECT_OPT - 4,1]))
             .attr('height', d3.max([_GRID_SIZE*sizes(d.cestas_basicas)*_RECT_OPT - 4,1]))
-            .style('fill', d => (d.cursou_ensino_medio_publico === 'f') ? 'none' : '#112035')
-            .style('stroke', d => (d.cursou_ensino_medio_publico === 'f') && d.cor_raca_autodeclarada === 'np' ? '#FFF' : 'none');
-                
+            .style('fill', d.cursou_ensino_medio_publico === 'f' ? 'none' : '#112035')
+            .style('stroke', d.cor_raca_autodeclarada === 'np' ? '#FFF' : 'none');;
+            
             d3.select('#tag > div.description').remove();
             let tagDesc = d3.select('#tag').append('div').classed('description', true);
 
@@ -259,7 +259,7 @@ function draw() {
             tagDesc.append('span').text(cor_raca_autodeclarada(d.cor_raca_autodeclarada));
             tagDesc.append('label').text('Sexo');
             tagDesc.append('span').text(sexo(d.sexo));
-            tagDesc.append('label').text('Cursou ensino médio público');
+            tagDesc.append('label').text('Cursou ensino médico público');
             tagDesc.append('span').text(cursou_ensino_medio_publico(d.cursou_ensino_medio_publico));
             tagDesc.append('label').text('Modalidade de ingresso');
             tagDesc.append('span').text(modalidade_ingresso(d.modalidade_ingresso));
