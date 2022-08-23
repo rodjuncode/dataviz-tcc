@@ -39,6 +39,19 @@ select option {
     width: 300px;
 }
 
+#tag .description label {
+    display: block;
+    font-weight: 800;
+    padding: 0;
+    margin: 0;
+}
+
+#tag .description span {
+    padding: 0;
+    margin: 0;
+}
+
+
 .aluno {
     margin: 0;
     padding: 0;

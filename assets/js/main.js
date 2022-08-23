@@ -33,9 +33,29 @@ d3.json('data/alunos.json').then(d => { // loading data
     .domain(['am', 'br', 'in', 'pa', 'pr', 'nd', 'np'])
     .range(['#F5524E','#B4B1E7','#59A14F','#2B94DD','#FDC361','#7E15FE','#112035']);
 
-    // sizes = d3.scaleLinear()
-    //     .domain([d3.min(alunos, d => d.cestas_basicas), d3.max(alunos, d => d.cestas_basicas)])
-    //     .range([.3, .8]);
+    cor_raca_autodeclarada = d3.scaleOrdinal()
+    .domain(['am', 'br', 'in', 'pa', 'pr', 'nd', 'np'])
+    .range(['Amarela','Branca','Indígena','Parda','Preta','Não declarada','Não perguntado']);
+
+    cursou_ensino_medio_publico = d3.scaleOrdinal()
+    .domain(['t', 'f'])
+    .range(['Sim', 'Não']);
+
+    sexo = d3.scaleOrdinal()
+    .domain(['m', 'f'])
+    .range(['Masculino', 'Feminino']);
+
+    modalidade_ingresso = d3.scaleOrdinal()
+    .domain(['vu', 'eu', 'pr', 'vi', 'vo'])
+    .range(['Vestibular Unicamp', 'ENEM-Unicamp', 'Profis', 'Vestibular Indígena', 'Vagas Olímpicas']);
+
+    paais = d3.scaleOrdinal()
+    .domain(['s', 'n', 'na'])
+    .range(['Sim', 'Não', 'Não se aplica']);
+
+    cotas = d3.scaleOrdinal()
+    .domain(['s', 'n', 'na'])
+    .range(['Sim', 'Não', 'Não se aplica']);
 
     sort = {
         'cor_raca_autodeclarada' : {
@@ -193,7 +213,7 @@ function draw() {
         .attr('height', d => d3.max([_GRID_SIZE*sizes(d.cestas_basicas)*_RECT_OPT - 4,1]))
         //.attr('transform', d => 'rotate(45,' + _GRID_SIZE/2 + ',' + _GRID_SIZE/2 + ')')
         .style('fill', d => (d.cursou_ensino_medio_publico === 'f') ? 'none' : '#112035')
-        .style('stroke', d => d.cor_raca_autodeclarada === 'np' ? '#FFF' : 'none');
+        .style('stroke', d => (d.cursou_ensino_medio_publico === 'f') && d.cor_raca_autodeclarada === 'np' ? '#FFF' : 'none');
 
         alunos = g.selectAll('g');
         alunos.on("mouseover", function(e, d) {
@@ -227,19 +247,37 @@ function draw() {
             .attr('y', _GRID_SIZE/2 - _GRID_SIZE*sizes(d.cestas_basicas)*_RECT_OPT/2 + 2)
             .attr('width', d3.max([_GRID_SIZE*sizes(d.cestas_basicas)*_RECT_OPT - 4,1]))
             .attr('height', d3.max([_GRID_SIZE*sizes(d.cestas_basicas)*_RECT_OPT - 4,1]))
-            .style('fill', d.cursou_ensino_medio_publico === 'f' ? 'none' : '#112035')
-            .style('stroke', d.cor_raca_autodeclarada === 'np' ? '#FFF' : 'none');;
-            
-            d3.select('#tag > p').remove();
-            d3.select('#tag').append('p').text(
-                d.cestas_basicas + ', ' + 
-                d.cor_raca_autodeclarada + ', ' +
-                d.sexo + ', ' +
-                d.cursou_ensino_medio_publico + ', ' +
-                d.ano + ', ' +
-                d.modalidade_ingresso + ', ' +
-                d.paais + ', ' +
-                d.cotas);
+            .style('fill', d => (d.cursou_ensino_medio_publico === 'f') ? 'none' : '#112035')
+            .style('stroke', d => (d.cursou_ensino_medio_publico === 'f') && d.cor_raca_autodeclarada === 'np' ? '#FFF' : 'none');
+                
+            d3.select('#tag > div.description').remove();
+            let tagDesc = d3.select('#tag').append('div').classed('description', true);
+
+            tagDesc.append('label').text('Cestas básicas');
+            tagDesc.append('span').text(d.cestas_basicas);
+            tagDesc.append('label').text('Cor/raça autodeclarada');
+            tagDesc.append('span').text(cor_raca_autodeclarada(d.cor_raca_autodeclarada));
+            tagDesc.append('label').text('Sexo');
+            tagDesc.append('span').text(sexo(d.sexo));
+            tagDesc.append('label').text('Cursou ensino médio público');
+            tagDesc.append('span').text(cursou_ensino_medio_publico(d.cursou_ensino_medio_publico));
+            tagDesc.append('label').text('Modalidade de ingresso');
+            tagDesc.append('span').text(modalidade_ingresso(d.modalidade_ingresso));
+            tagDesc.append('label').text('PAAIS');
+            tagDesc.append('span').text(paais(d.paais));
+            tagDesc.append('label').text('Cotas');
+            tagDesc.append('span').text(cotas(d.cotas));
+
+
+            // tag.text(
+            //     '<p><strong>Cestas básicas: </strong>'+ d.cestas_basicas + '</p> ' + 
+            //     d.cor_raca_autodeclarada + ', ' +
+            //     d.sexo + ', ' +
+            //     d.cursou_ensino_medio_publico + ', ' +
+            //     d.ano + ', ' +
+            //     d.modalidade_ingresso + ', ' +
+            //     d.paais + ', ' +
+            //     d.cotas);
 
         });
 
