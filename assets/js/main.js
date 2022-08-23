@@ -151,11 +151,11 @@ function draw() {
         //.data(alunos)
         .join('g')
         .classed('aluno', true)
-        .attr('transform', (d,i) => 'translate(' + (i%_GRID_COLUMNS)*_GRID_SIZE + ',' + Math.floor(i/_GRID_COLUMNS)*_GRID_SIZE + ')');
-        // .append('rect')
-        // .attr('width', _GRID_SIZE)
-        // .attr('height', _GRID_SIZE)
-        // .style('fill', '#FFF')
+        .attr('transform', (d,i) => 'translate(' + (i%_GRID_COLUMNS)*_GRID_SIZE + ',' + Math.floor(i/_GRID_COLUMNS)*_GRID_SIZE + ')')
+        .append('rect')
+        .attr('width', _GRID_SIZE)
+        .attr('height', _GRID_SIZE)
+        .style('fill', '#112035')
         // .style('fill-opacity', d => (d.cursou_ensino_medio_publico === 't' ? 0.15 : 0));
         
         viz.call(d3.zoom()
@@ -230,8 +230,8 @@ function draw() {
             .style('fill', d.cursou_ensino_medio_publico === 'f' ? 'none' : '#112035')
             .style('stroke', d.cor_raca_autodeclarada === 'np' ? '#FFF' : 'none');;
             
-
-            let tagDescription = d3.select('#tag > p').text(
+            d3.select('#tag > p').remove();
+            d3.select('#tag').append('p').text(
                 d.cestas_basicas + ', ' + 
                 d.cor_raca_autodeclarada + ', ' +
                 d.sexo + ', ' +
