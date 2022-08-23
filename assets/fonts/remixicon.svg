@@ -1,0 +1,24 @@
+<?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<svg xmlns="http://www.w3.org/2000/svg">
+<defs>
+    <font id="remixicon" horiz-adv-x="1200">
+    <font-face font-family="remixicon"
+        units-per-em="1200" ascent="1200"
+        descent="0" />
+    <missing-glyph horiz-adv-x="0" /><glyph glyph-name="arrow-right-s-line"
+            unicode="&#xEA6E;"
+            horiz-adv-x="1200" d="M658.6 600L411.1000000000001 847.5L481.8000000000001 918.2L800 600L481.8 281.8L411.1 352.5z" /><glyph glyph-name="arrow-left-s-line"
+            unicode="&#xEA64;"
+            horiz-adv-x="1200" d="M541.4 600L788.9 352.5L718.1999999999999 281.8L400 600L718.2 918.2L788.9 847.5z" /><glyph glyph-name="information-line"
+            unicode="&#xEE59;"
+            horiz-adv-x="1200" d="M600 100C323.85 100 100 323.85 100 600S323.85 1100 600 1100S1100 876.15 1100 600S876.15 100 600 100zM600 200A400 400 0 1 1 600 1000A400 400 0 0 1 600 200zM550 850H650V750H550V850zM550 650H650V350H550V650z" /><glyph glyph-name="information-fill"
+            unicode="&#xEE58;"
+            horiz-adv-x="1200" d="M600 100C323.85 100 100 323.85 100 600S323.85 1100 600 1100S1100 876.15 1100 600S876.15 100 600 100zM550 650V350H650V650H550zM550 850V750H650V850H550z" /><glyph glyph-name="question-line"
+            unicode="&#xF045;"
+            horiz-adv-x="1200" d="M600 100C323.85 100 100 323.85 100 600S323.85 1100 600 1100S1100 876.15 1100 600S876.15 100 600 100zM600 200A400 400 0 1 1 600 1000A400 400 0 0 1 600 200zM550 450H650V350H550V450zM650 532.25V500H550V575A50 50 0 0 0 600 625A75 75 0 1 1 526.45 714.7L428.35 734.3500000000001A175.04999999999998 175.04999999999998 0 1 0 650 532.25z" /><glyph glyph-name="question-fill"
+            unicode="&#xF044;"
+            horiz-adv-x="1200" d="M600 100C323.85 100 100 323.85 100 600S323.85 1100 600 1100S1100 876.15 1100 600S876.15 100 600 100zM550 450V350H650V450H550zM650 532.25A175.1 175.1 0 0 1 600 875A175.04999999999998 175.04999999999998 0 0 1 428.35 734.3499999999999L526.45 714.6999999999999A75 75 0 1 0 600 625A50 50 0 0 1 550 575V500H650V532.25z" /><glyph glyph-name="arrow-right-line"
+            unicode="&#xEA6C;"
+            horiz-adv-x="1200" d="M808.6 650L540.4 918.2L611.1 988.9L1000 600L611.1 211.1L540.4000000000001 281.8000000000002L808.6 550H200V650z" /><glyph glyph-name="arrow-left-line"
+            unicode="&#xEA60;"
+            horiz-adv-x="1200" d="M391.4000000000001 650H1000V550H391.4000000000001L659.6 281.8L588.9 211.0999999999999L200 600L588.9 988.9L659.5999999999999 918.2z" /></font></defs></svg>

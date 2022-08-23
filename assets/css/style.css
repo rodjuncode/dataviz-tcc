@@ -7,6 +7,23 @@ html, body {
     overflow: hidden;
 }
 
+#overlay {
+    display: flex;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: rgba(255,255,255,0.95);
+    z-index: 10;
+    justify-content: center;
+    align-items: center;
+}
+
+#overlay div {
+    margin: 0 auto;
+}
+
 #app {
     display: flex;
     flex-flow: row;
@@ -18,10 +35,10 @@ html, body {
     flex-wrap: wrap; */
     flex: 1 1 auto;
     background: #112035;
+    padding: 5px;
 }
 
 #yearNav {
-    display: inline-flex;
     margin: 0 auto;
 }
 
@@ -36,14 +53,65 @@ select option {
 
 #nav {
     font-family: 'Poppins', sans-serif;
+    padding: 0 10px;
     width: 300px;
+}
+
+#tagInstructions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    border: 1px solid #CCC;
+    color: #888;
+    padding: 30px;
+  }
+
+#sortNav {
+    border-bottom: 1px dashed #CCC;
+    margin: 0 0 20px 0;
+    padding: 0 0 20px 0px;
+    text-align: center;
+}
+
+#sortNav label {
+    font-size: 0.9em;
+    font-weight: 800;
+}
+
+#yearNav {
+    text-align: center;
+    width: 100%;
+}
+
+#yearNav i {
+    font-size: 2.5em;
+    text-align: center;
+}
+
+#yearNav i:hover {
+    opacity: 0.3;
+    cursor: pointer;
+}
+
+#yearNav span#year {
+    font-family: 'Poppins', sans-serif;
+    font-size: 3.5em;
+    font-weight: 400;
+    margin: 0;
+    text-align: center;
+    width: 150px;
+}
+
+#tag .description {
+    padding: 0 0 0 3px;
 }
 
 #tag .description label {
     display: block;
     font-weight: 800;
     padding: 0;
-    margin: 0;
+    margin: 6px 0 0 0;
 }
 
 #tag .description span {
@@ -71,10 +139,3 @@ button {
     width: 50px;
 }
 
-h2#year {
-    font-family: 'Poppins', sans-serif;
-    font-size: 3.5em;
-    font-weight: 400;
-    margin: 0;
-    width: 150px;
-}

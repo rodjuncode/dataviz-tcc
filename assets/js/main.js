@@ -134,6 +134,8 @@ function prevYear() {
 
 function draw() {
 
+    d3.select('#overlay').style('opacity', 0.9).style('display', 'flex');
+
     // calculate dimensions
     let vizContainer = d3.select('#viz').node().getBoundingClientRect();
     let fit = false;
@@ -180,7 +182,7 @@ function draw() {
         
         viz.call(d3.zoom()
         .extent([[0, 0], [500, 500]])
-        .scaleExtent([1, 8])
+        .scaleExtent([1, 5])
         .translateExtent([[0,0],[500,500]])
         .on("zoom", zoomed));
 
@@ -212,8 +214,8 @@ function draw() {
         .attr('width', d => d3.max([_GRID_SIZE*sizes(d.cestas_basicas)*_RECT_OPT - 4,1]))
         .attr('height', d => d3.max([_GRID_SIZE*sizes(d.cestas_basicas)*_RECT_OPT - 4,1]))
         //.attr('transform', d => 'rotate(45,' + _GRID_SIZE/2 + ',' + _GRID_SIZE/2 + ')')
-        .style('fill', d => (d.cursou_ensino_medio_publico === 'f') ? 'none' : '#112035')
-        .style('stroke', d => d.cor_raca_autodeclarada === 'np' ? '#FFF' : 'none');
+        .style('fill',  d => d.cursou_ensino_medio_publico === 'f' ? '#112035' : colors(d.cor_raca_autodeclarada))
+        .style('stroke', d => d.cor_raca_autodeclarada === 'np' && d.cursou_ensino_medio_publico == 'f' ? '#FFF' : 'none');
 
         alunos = g.selectAll('g');
         alunos.on("mouseover", function(e, d) {
@@ -247,8 +249,9 @@ function draw() {
             .attr('y', _GRID_SIZE/2 - _GRID_SIZE*sizes(d.cestas_basicas)*_RECT_OPT/2 + 2)
             .attr('width', d3.max([_GRID_SIZE*sizes(d.cestas_basicas)*_RECT_OPT - 4,1]))
             .attr('height', d3.max([_GRID_SIZE*sizes(d.cestas_basicas)*_RECT_OPT - 4,1]))
-            .style('fill', d.cursou_ensino_medio_publico === 'f' ? 'none' : '#112035')
-            .style('stroke', d.cor_raca_autodeclarada === 'np' ? '#FFF' : 'none');;
+            .style('fill',  d.cursou_ensino_medio_publico === 'f' ? '#112035' : colors(d.cor_raca_autodeclarada))
+            .style('stroke', d.cor_raca_autodeclarada === 'np' && d.cursou_ensino_medio_publico == 'f' ? '#FFF' : 'none');
+    
             
             d3.select('#tag > div.description').remove();
             let tagDesc = d3.select('#tag').append('div').classed('description', true);
@@ -341,4 +344,8 @@ function draw() {
     // viz.selectAll('.aluno svg')
     //     .filter(d => d.cor_raca_autodeclarada === 'np')
     //     .style('stroke', '#FFFFFF');     
+    d3.select('#overlay')
+    .transition().delay('2000').duration('500').style('opacity', 0).style('display', 'none');
+
+
 }
