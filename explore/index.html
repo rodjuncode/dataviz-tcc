@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualização de dados sobre as experiências com Ações Afirmativas na Unicamp: uma abordagem humanizada</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;800&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="../assets/fonts/remixicon.css">
+    <link rel="stylesheet" href="../assets/css/three-dots.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <script src="../assets/js/d3.min.js"></script>
+    <script src="../assets/js/lodash.min.js"></script>
+    <script src="main.js"></script>
+</head>
+<body>
+    <div id="overlay">
+        <div class="dot-bricks"></div>
+    </div>
+    <div id="app">
+        <!-- <button onclick="javascript: zoomIn()">+</button>
+        <button onclick="javascript: zoomOut()">-</button>
+        <button onclick="javascript: prevYear()">&lt;</button>
+        <button onclick="javascript: nextYear()">&gt;</button>
+        <h2 id="year"></h2> -->
+        <div id="viz"></div>
+        <div id="nav">
+            <div id="yearNav">
+                <i class="ri-arrow-left-s-line" onclick="javascript: prevYear()"></i> 
+                <span id="year"></span>
+                <i class="ri-arrow-right-s-line" onclick="javascript: nextYear()"></i> 
+            </div>
+            <div id="sortNav">
+                <label>Agrupar por:</label>
+                <select onchange="javascript: sortViz(this.value);">
+                    <option value='cestas_basicas' selected>Renda Familiar</option>
+                    <option value='cor_raca_autodeclarada'>Raça/Cor Autodeclarada</option>
+                    <option value='cursou_ensino_medio_publico'>Ensino Médio Público</option>
+                    <option value='sexo'>Sexo</option>
+                </select>
+            </div>
+            <div id="tag">
+                <div id="tagInstructions">
+                    Passe o mouse por cima dos itens, para obter detalhes.
+                </div>
+            </div>
+        </div>        
+    </div>
+    <!-- <svg id="viz" width="100%" height="100%"></svg> -->
+</body>
+</html>

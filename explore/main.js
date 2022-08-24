@@ -25,7 +25,7 @@ var sortField = _START_SORT;
 
 var colors, sizes, sort;
 
-d3.json('data/alunos.json').then(d => { // loading data
+d3.json('../data/alunos.json').then(d => { // loading data
             
     data = _.values(d);
 
@@ -344,8 +344,9 @@ function draw() {
     // viz.selectAll('.aluno svg')
     //     .filter(d => d.cor_raca_autodeclarada === 'np')
     //     .style('stroke', '#FFFFFF');     
+
     d3.select('#overlay')
-    .transition().delay('2000').duration('500').style('opacity', 0).style('display', 'none');
+    .transition().delay('1500').duration('500').style('opacity', 0).style('display', 'none');
 
 
 }
