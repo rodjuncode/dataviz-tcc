@@ -54,14 +54,15 @@ select option {
 #nav {
     font-family: 'Poppins', sans-serif;
     padding: 0 10px;
-    width: 300px;
+    width: 275px;
 }
 
-#tagInstructions {
+
+#tag .instructions {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 300px;
+    height: 350px;
     border: 1px solid #CCC;
     color: #888;
     padding: 30px;
@@ -69,14 +70,18 @@ select option {
 
 #sortNav {
     border-bottom: 1px dashed #CCC;
-    margin: 0 0 20px 0;
-    padding: 0 0 20px 0px;
+    margin: 0 0 15px 0;
+    padding: 0 0 15px 0px;
     text-align: center;
 }
 
 #sortNav label {
-    font-size: 0.9em;
+    font-size: 0.8em;
     font-weight: 800;
+}
+
+#sortNav select {
+    font-size: 0.8em;
 }
 
 #yearNav {
@@ -85,7 +90,7 @@ select option {
 }
 
 #yearNav i {
-    font-size: 2.5em;
+    font-size: 2.2em;
     text-align: center;
 }
 
@@ -96,15 +101,17 @@ select option {
 
 #yearNav span#year {
     font-family: 'Poppins', sans-serif;
-    font-size: 3.5em;
+    font-size: 3.2em;
     font-weight: 400;
     margin: 0;
     text-align: center;
     width: 150px;
 }
 
+
 #tag .description {
     padding: 0 0 0 3px;
+    font-size: 0.80em;
 }
 
 #tag .description label {
