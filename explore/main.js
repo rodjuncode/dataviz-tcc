@@ -74,6 +74,11 @@ sort = {
 
 d3.json('../data/alunos.json').then(d => { 
     data = _.values(d);
+
+    sizes = d3.scaleLinear()
+    .domain([d3.min(data, d => d.cestas_basicas), d3.max(data, d => d.cestas_basicas)])
+    .range([.25, .75]);
+
     draw();
 });
 
@@ -122,10 +127,6 @@ function calculateSizes() {
     vizSize = vizContainer.width;
     gridColumnsNumber = nCols;
     gridCellSize = vizSize/gridColumnsNumber;
-
-    sizes = d3.scaleLinear()
-        .domain([d3.min(data, d => d.cestas_basicas), d3.max(data, d => d.cestas_basicas)])
-        .range([.25, .9]);
 
 }
 
@@ -188,7 +189,6 @@ function draw() {
         .style('fill',  d => d.cursou_ensino_medio_publico === 'f' ? '#112035' : palette(d.cor_raca_autodeclarada))
         .style('stroke', d => d.cor_raca_autodeclarada === 'np' && d.cursou_ensino_medio_publico == 'f' ? '#FFF' : 'none');
 
-        alunos = g.selectAll('g');
         alunos.on("mouseover", function(e, d) {
             d3.select('#tag > *').remove(); // clear tag
 

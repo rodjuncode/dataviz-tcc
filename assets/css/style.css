@@ -66,6 +66,7 @@ select option {
     border: 1px solid #CCC;
     color: #888;
     padding: 30px;
+    font-size: 0.9em;
   }
 
 #sortNav {
@@ -76,12 +77,12 @@ select option {
 }
 
 #sortNav label {
-    font-size: 0.8em;
+    font-size: 0.85em;
     font-weight: 800;
 }
 
 #sortNav select {
-    font-size: 0.8em;
+    font-size: 0.9em;
 }
 
 #yearNav {
@@ -111,7 +112,7 @@ select option {
 
 #tag .description {
     padding: 0 0 0 3px;
-    font-size: 0.80em;
+    font-size: 0.95em;
 }
 
 #tag .description label {
