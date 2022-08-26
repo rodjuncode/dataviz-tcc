@@ -9,6 +9,7 @@ html, body {
 }
 
 #overlay {
+    display: none;
     position: fixed;
     width: 100%;
     height: 100%;
@@ -18,10 +19,24 @@ html, body {
     z-index: 10;
     justify-content: center;
     align-items: center;
+    opacity: 0;
 }
 
-#overlay div {
-    margin: 0 auto;
+
+#modal-help button {
+    background: #7E15FE;
+    border: 0;
+    color: #fff;
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.3em;
+    padding: 25px;
+    margin: 27px 0 0 0;
+}
+
+#modal-help button:hover {
+    cursor: pointer;
+    opacity: 0.7;
 }
 
 #app {
@@ -64,6 +79,17 @@ select option {
     padding-right: 62px;
     padding-top: 9px;
     width: 150px;
+}
+
+#tag .icon i {
+    color: #fff;
+    font-size: 1.4em;
+    float: right;
+    margin: -5px;
+    position: relative;
+    top: 10px;
+    left: 50px;
+
 }
 
 #tag .instructions {
@@ -142,7 +168,6 @@ select option {
     font-weight: 400;
     margin: 0;
     text-align: center;
-    width: 150px;
 }
 
 
@@ -316,4 +341,11 @@ input:checked + label.filter:after {
 
 label.filter:active:after {
 	width: 25px;
+}
+
+#help {
+    cursor: pointer;
+    font-size: 1.5em;
+    position: relative;
+    top: 6px;
 }

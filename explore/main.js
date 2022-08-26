@@ -11,7 +11,7 @@ const _RECT_OPT_CORR = 1.2; // optical ajustment for squares to have similar siz
 // ################
 // global variables
 // ################
-var data, viz, alunos, tag, vizContainer, alunos; // important elements
+var data, viz, alunos, tag, vizContainer, alunos, help; // important elements
 var palette, sizes, cor_raca_autodeclarada, cursou_ensino_medio_publico, sexo, modalidade_ingresso, paais, cotas; // scales
 var sort; // sorting config
 var currentYear = _START_YEAR;
@@ -91,6 +91,9 @@ d3.json('../data/alunos.json').then(d => {
     .domain([d3.min(data, d => d.cestas_basicas), d3.max(data, d => d.cestas_basicas)])
     .range([.25, .75]);
 
+    help = d3.select('#overlay');
+    openHelp();
+    
     draw();
 });
 
@@ -98,11 +101,22 @@ d3.json('../data/alunos.json').then(d => {
 // functions
 // #########
 
+function closeHelp() {
+    help.transition().duration(1000).style('opacity', 0).on('end', function() {
+        help.style('display', 'none');
+    })
+}
+
+function openHelp() {
+    help.style('display', 'flex').transition().duration(1000).style('opacity', 1);
+}
+
 function sortViz(v) {
     currentSortField = v;
     alunos.sort(sort[currentSortField]['desc'])
         .transition().ease(d3.easeCubicInOut)
-        .duration(800)
+        // .duration(800)
+        .duration(1000)
         .attr('transform', (d,i) => 'translate(' + (i%gridColumnsNumber)*gridCellSize + ',' + Math.floor(i/gridColumnsNumber)*gridCellSize + ')');
 }
 
@@ -239,6 +253,13 @@ function draw() {
         .classed('aluno', true)
         .attr('transform', (d,i) => 'translate(' + (i%gridColumnsNumber)*gridCellSize + ',' + Math.floor(i/gridColumnsNumber)*gridCellSize + ')');
 
+    alunos.append('rect')
+        .attr('width', gridCellSize)
+        .attr('height', gridCellSize)
+        .classed('gridArea', true)
+        .style('fill', '#112035')
+        .style('opacity', 0);
+
     // draws shapes into each particle
     viz.selectAll('#viz > svg > g > g')
         .append(d => document.createElementNS('http://www.w3.org/2000/svg', d.sexo === 'm' ? 'circle' : 'rect'))
@@ -258,18 +279,19 @@ function draw() {
         .attr('cx',gridCellSize/2)
         .attr('cy',gridCellSize/2)
         .attr('r', d => d3.max([gridCellSize*sizes(d.cestas_basicas)/2 - 2, 1]))
-        .attr('x', d => gridCellSize/2 - gridCellSize*sizes(d.cestas_basicas)/2 + 2)
-        .attr('y', d => gridCellSize/2 - gridCellSize*sizes(d.cestas_basicas)/2 + 2)
-        .attr('width', d => d3.max([gridCellSize*sizes(d.cestas_basicas) - 4,1]))
-        .attr('height', d => d3.max([gridCellSize*sizes(d.cestas_basicas) - 4,1]))
+        .attr('x', d => gridCellSize/2 - gridCellSize*sizes(d.cestas_basicas)*_RECT_OPT_CORR/2 + 2)
+        .attr('y', d => gridCellSize/2 - gridCellSize*sizes(d.cestas_basicas)*_RECT_OPT_CORR/2 + 2)
+        .attr('width', d => d3.max([gridCellSize*sizes(d.cestas_basicas)*_RECT_OPT_CORR - 4,1]))
+        .attr('height', d => d3.max([gridCellSize*sizes(d.cestas_basicas)*_RECT_OPT_CORR - 4,1]))
         .style('fill',  d => d.cursou_ensino_medio_publico === 'f' ? '#112035' : palette(d.cor_raca_autodeclarada))
         .style('stroke', d => d.cor_raca_autodeclarada === 'np' && d.cursou_ensino_medio_publico == 'f' ? '#FFF' : 'none');
 
         alunos.on("mouseover", function(e, d) {
             d3.select('#tag > *').remove(); // clear tag
 
-            let svg = d3.select('#tag').append('div').classed('icon', true).append('svg').attr("viewBox", [0, 0, gridCellSize, gridCellSize]);
-
+            d3.select('#tag').append('div').classed('icon', true);
+            let svg = d3.select('#tag .icon').append('svg').attr("viewBox", [0, 0, gridCellSize, gridCellSize]);
+            
             svg.append('rect')
             .attr('x', '0')
             .attr('y', '0')
@@ -292,16 +314,16 @@ function draw() {
             .attr('cx',gridCellSize/2)
             .attr('cy',gridCellSize/2)
             .attr('r', d3.max([gridCellSize*sizes(d.cestas_basicas)/2 - 2, 1]))
-            .attr('x', gridCellSize/2 - gridCellSize*sizes(d.cestas_basicas)/2 + 2)
-            .attr('y', gridCellSize/2 - gridCellSize*sizes(d.cestas_basicas)/2 + 2)
-            .attr('width', d3.max([gridCellSize*sizes(d.cestas_basicas) - 4,1]))
-            .attr('height', d3.max([gridCellSize*sizes(d.cestas_basicas) - 4,1]))
+            .attr('x', gridCellSize/2 - gridCellSize*sizes(d.cestas_basicas)*_RECT_OPT_CORR/2 + 2)
+            .attr('y', gridCellSize/2 - gridCellSize*sizes(d.cestas_basicas)*_RECT_OPT_CORR/2 + 2)
+            .attr('width', d3.max([gridCellSize*sizes(d.cestas_basicas)*_RECT_OPT_CORR - 4,1]))
+            .attr('height', d3.max([gridCellSize*sizes(d.cestas_basicas)*_RECT_OPT_CORR - 4,1]))
             .style('fill',  d.cursou_ensino_medio_publico === 'f' ? '#112035' : palette(d.cor_raca_autodeclarada))
             .style('stroke', d.cor_raca_autodeclarada === 'np' && d.cursou_ensino_medio_publico == 'f' ? '#FFF' : 'none');
                 
             d3.select('#tag > div.description').remove();
             let tagDesc = d3.select('#tag').append('div').classed('description', true);
-            tagDesc.append('label').text('Cestas básicas');
+            tagDesc.append('label').text('Renda familiar');
             tagDesc.append('span').text(d.cestas_basicas);
             tagDesc.append('label').text('Cor/raça');
             tagDesc.append('span').text(cor_raca_autodeclarada(d.cor_raca_autodeclarada));
@@ -318,3 +340,4 @@ function draw() {
         });
 
 }
+
