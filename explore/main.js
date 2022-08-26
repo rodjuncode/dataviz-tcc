@@ -18,6 +18,18 @@ var currentYear = _START_YEAR;
 var currentSortField = _START_SORT;
 let vizSize, gridColumnsNumber, gridCellSize; // size config
 
+// #################
+// acoes afirmativas
+// #################
+let acoesAfirmativas = {
+    'eu' : [2019,2020,2022],
+    'vi' : [2019,2020,2021,2022],
+    'vo' : [2019,2020,2021,2022],
+    'pr' : [2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022],
+    'cotas' : [2019,2020,2021,2022],
+    'paais' : [2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022]
+}
+
 // ###########
 // load scales
 // ###########
@@ -94,6 +106,44 @@ function sortViz(v) {
         .attr('transform', (d,i) => 'translate(' + (i%gridColumnsNumber)*gridCellSize + ',' + Math.floor(i/gridColumnsNumber)*gridCellSize + ')');
 }
 
+function refreshFilters() {
+    if (acoesAfirmativas['eu'].includes(currentYear)) {
+
+    }
+    if (acoesAfirmativas['vi'].includes(currentYear)) {
+        
+    }
+    if (acoesAfirmativas['vo'].includes(currentYear)) {
+        
+    }
+    if (acoesAfirmativas['pr'].includes(currentYear)) {
+        
+    }
+    if (acoesAfirmativas['paais'].includes(currentYear)) {
+        
+    }
+    if (acoesAfirmativas['cotas'].includes(currentYear)) {
+        
+    }
+}
+
+function filterViz(filter,checked) {
+    if (filter == 'enem-unicamp') {
+        alunos.filter(d => d.modalidade_ingresso === 'eu').transition().duration(1000).style('opacity', checked ? 1 : 0);
+    } else if (filter == 'profis') {
+        alunos.filter(d => d.modalidade_ingresso === 'pr').transition().duration(1000).style('opacity', checked ? 1 : 0);
+    } else if (filter == 'vestibular-indigena') {
+        alunos.filter(d => d.modalidade_ingresso === 'vi').transition().duration(1000).style('opacity', checked ? 1 : 0);
+    } else if (filter == 'vagas-olimpicas') {
+        alunos.filter(d => d.modalidade_ingresso === 'vo').transition().duration(1000).style('opacity', checked ? 1 : 0);
+    } else if (filter == 'paais') {
+        alunos.filter(d => d.paais === 's').transition().duration(1000).style('opacity', checked ? 1 : 0);
+    } else if (filter == 'cotas') {
+        alunos.filter(d => d.cotas === 's').transition().duration(1000).style('opacity', checked ? 1 : 0);
+    }
+
+}
+
 function nextYear() {
     currentYear++;
     if (currentYear > _MAX_YEAR) {
@@ -140,6 +190,8 @@ function zoomed({transform}) {
 
 
 function draw() {
+
+    refreshFilters();
 
     calculateSizes();
     clearViz();
@@ -227,13 +279,13 @@ function draw() {
             let tagDesc = d3.select('#tag').append('div').classed('description', true);
             tagDesc.append('label').text('Cestas básicas');
             tagDesc.append('span').text(d.cestas_basicas);
-            tagDesc.append('label').text('Cor/raça autodeclarada');
+            tagDesc.append('label').text('Cor/raça');
             tagDesc.append('span').text(cor_raca_autodeclarada(d.cor_raca_autodeclarada));
             tagDesc.append('label').text('Sexo');
             tagDesc.append('span').text(sexo(d.sexo));
-            tagDesc.append('label').text('Cursou ensino médio público');
+            tagDesc.append('label').text('Ensino médio público');
             tagDesc.append('span').text(cursou_ensino_medio_publico(d.cursou_ensino_medio_publico));
-            tagDesc.append('label').text('Modalidade de ingresso');
+            tagDesc.append('label').text('Modalidade');
             tagDesc.append('span').text(modalidade_ingresso(d.modalidade_ingresso));
             tagDesc.append('label').text('PAAIS');
             tagDesc.append('span').text(paais(d.paais));

@@ -57,23 +57,54 @@ select option {
     width: 275px;
 }
 
+#tag .icon {
+    background: #112035;
+    margin: 0 auto 5px auto;
+    padding-left: 62px;
+    padding-right: 62px;
+    padding-top: 9px;
+    width: 150px;
+}
 
 #tag .instructions {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 350px;
+    height: 200px;
     border: 1px solid #CCC;
     color: #888;
     padding: 30px;
     font-size: 0.9em;
-  }
+}
+
+#filterNav {
+    border-bottom: 1px dashed #CCC;
+    font-size: 0.9em;
+    margin: 0 0 15px 0;
+    padding: 0 0 15px 0px;
+}
+
+#filterNav label {
+    font-size: 0.85em;
+    font-weight: 800;
+}
+
+#filterTable {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 7px 0 0px 0;
+}
+
+#filterTable p {
+    margin: 5px 0px;
+    width: 80%;
+}
 
 #sortNav {
     border-bottom: 1px dashed #CCC;
+    font-size: 0.9em;
     margin: 0 0 15px 0;
     padding: 0 0 15px 0px;
-    text-align: center;
 }
 
 #sortNav label {
@@ -111,20 +142,27 @@ select option {
 
 
 #tag .description {
+    display: flex;
+    flex-wrap: wrap;
     padding: 0 0 0 3px;
-    font-size: 0.95em;
+    font-size: 0.8em;
 }
 
 #tag .description label {
     display: block;
     font-weight: 800;
+    height: 25px;
     padding: 0;
     margin: 6px 0 0 0;
+    width: 52%;
 }
 
 #tag .description span {
-    padding: 0;
+    display: block;
+    padding: 6px 1px 0 0;
     margin: 0;
+    text-align: right;
+    width: 47%;
 }
 
 .aluno {
@@ -231,4 +269,46 @@ select option {
     color: #333;
     margin: 0;
     padding: 10px;
+}
+
+input[type=checkbox]{
+	height: 0;
+	width: 0;
+	visibility: hidden;
+}
+
+label.filter {
+	cursor: pointer;
+	text-indent: -9999px;
+	width: 48px;
+	height: 24px;
+	background: grey;
+	display: inline-block;
+	border-radius: 24px;
+	position: relative;
+}
+
+label.filter:after {
+	content: '';
+	position: absolute;
+	top: 3px;
+	left: 3px;
+	width: 18px;
+	height: 18px;
+	background: #fff;
+	border-radius: 18px;
+	transition: 0.3s;
+}
+
+input:checked + label.filter {
+	background: #7E15FE;
+}
+
+input:checked + label.filter:after {
+	left: calc(100% - 5px);
+	transform: translateX(-100%);
+}
+
+label.filter:active:after {
+	width: 25px;
 }
