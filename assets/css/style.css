@@ -89,6 +89,11 @@ select option {
     font-weight: 800;
 }
 
+#filterNav p.strike {
+    color: #666;
+    text-decoration: line-through;
+}
+
 #filterTable {
     display: flex;
     flex-wrap: wrap;

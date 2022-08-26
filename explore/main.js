@@ -108,22 +108,46 @@ function sortViz(v) {
 
 function refreshFilters() {
     if (acoesAfirmativas['eu'].includes(currentYear)) {
-
+        d3.select('#enem-unicamp').attr('checked', 'true').attr('disabled', null);    
+        d3.select('p.enem-unicamp').classed('strike', false);    
+    } else {
+        d3.select('#enem-unicamp').attr('checked', null).attr('disabled','true');
+        d3.select('p.enem-unicamp').classed('strike', true);            
     }
     if (acoesAfirmativas['vi'].includes(currentYear)) {
-        
+        d3.select('#vestibular-indigena').attr('checked', 'true').attr('disabled', null);        
+        d3.select('p.vestibular-indigena').classed('strike', false);            
+    } else {
+        d3.select('#vestibular-indigena').attr('checked', null).attr('disabled','true');        
+        d3.select('p.vestibular-indigena').classed('strike', true);             
     }
     if (acoesAfirmativas['vo'].includes(currentYear)) {
-        
+        d3.select('#vagas-olimpicas').attr('checked', 'true').attr('disabled', null);
+        d3.select('p.vagas-olimpicas').classed('strike', false);            
+    } else {
+        d3.select('#vagas-olimpicas').attr('checked', null).attr('disabled','true'); 
+        d3.select('p.vagas-olimpicas').classed('strike', true);             
     }
     if (acoesAfirmativas['pr'].includes(currentYear)) {
-        
+        d3.select('#profis').attr('checked', 'true').attr('disabled', null);        
+        d3.select('p.profis').classed('strike', false);            
+    } else {
+        d3.select('#profis').attr('checked', null).attr('disabled','true');
+        d3.select('p.profis').classed('strike', true);             
     }
     if (acoesAfirmativas['paais'].includes(currentYear)) {
-        
+        d3.select('#paais').attr('checked', 'true').attr('disabled', null);
+        d3.select('p.paais').classed('strike', false);            
+    } else {
+        d3.select('#paais').attr('checked', null).attr('disabled','true');        
+        d3.select('p.paais').classed('strike', true);             
     }
     if (acoesAfirmativas['cotas'].includes(currentYear)) {
-        
+        d3.select('#cotas').attr('checked', 'true').attr('disabled', null);
+        d3.select('p.cotas').classed('strike', false);            
+    } else {
+        d3.select('#cotas').attr('checked', null).attr('disabled','true');        
+        d3.select('p.cotas').classed('strike', true);             
     }
 }
 
