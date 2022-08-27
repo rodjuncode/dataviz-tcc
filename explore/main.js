@@ -18,6 +18,7 @@ var currentYear = _START_YEAR;
 var currentSortField = _START_SORT;
 let vizSize, gridColumnsNumber, gridCellSize; // size config
 
+
 // #################
 // acoes afirmativas
 // #################
@@ -93,7 +94,7 @@ d3.json('../data/alunos.json').then(d => {
 
     help = d3.select('#overlay');
     openHelp();
-    
+
     draw();
 });
 
@@ -324,7 +325,7 @@ function draw() {
             d3.select('#tag > div.description').remove();
             let tagDesc = d3.select('#tag').append('div').classed('description', true);
             tagDesc.append('label').text('Renda familiar');
-            tagDesc.append('span').text(d.cestas_basicas);
+            tagDesc.append('span').text('cerca de ' + Math.round(d.cestas_basicas) + ' cestas básicas/mês');
             tagDesc.append('label').text('Cor/raça');
             tagDesc.append('span').text(cor_raca_autodeclarada(d.cor_raca_autodeclarada));
             tagDesc.append('label').text('Sexo');

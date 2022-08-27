@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visualização de dados sobre as experiências com Ações Afirmativas na Unicamp: uma abordagem humanizada</title>
+    <title>Visualização de dados sobre as experiências com Ações Afirmativas na Unicamp: uma abordagem humanizada
+    </title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/fonts/remixicon.css">
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="assets/css/splide-default.min.css">
-    <script src="assets/js/splide.min.js"></script>    
+    <script src="assets/js/splide.min.js"></script>
     <script src="assets/js/popper.min.js"></script>
-    <script src="assets/js/tippy-bundle.umd.min.js"></script>    
+    <script src="assets/js/tippy-bundle.umd.min.js"></script>
 </head>
 <body>
     <div id="story">
@@ -26,14 +28,17 @@
                                 <!-- <img src="assets/img/logo-edg_mono.png" /> -->
                                 <img src="assets/img/logo.png" />
                                 <h2 id="carousel-heading">
-                                    Visualização de dados sobre as experiências <br/>com Ações Afirmativas na Unicamp: <br/>uma abordagem humanizada
+                                    Visualização de dados sobre as experiências <br />com Ações Afirmativas na Unicamp:
+                                    <br />uma abordagem humanizada
                                 </h2>
-                                <p>Qual é o impacto das <span id="acoes-afirmativas" class="tooltip">Ações Afirmativas</span> no corpo discente da UNICAMP?<br/>
-                                   A visualização de dados a seguir propõe uma reflexão sobre essa pergunta, através de uma abordagem humanizada, seguindo as ideias do manifesto de Giorgia Lupi.<br/>
+                                <p>Qual é o impacto das <span id="acoes-afirmativas" class="tooltip">Ações
+                                        Afirmativas</span> no corpo discente da UNICAMP?<br />
+                                    A visualização de dados a seguir propõe uma reflexão sobre essa pergunta, através de
+                                    uma abordagem humanizada, seguindo as ideias do manifesto de Giorgia Lupi.<br />
 
                                 </p>
                                 <button onclick="splide.go('>')">Começar</button>
-                                
+
                             </div>
                         </div>
                     </li>
@@ -43,8 +48,11 @@
                                 <h2 id="carousel-heading">
                                     Como seriam os seus dados?
                                 </h2>
-                                <p>Sugerimos experimentar com valores diferentes, para visualizar outras formas de resposta.<br/>
-                                <div class="warning">Não se preocupe, essas informações <strong>NÃO</strong> serão armazenadas.</div></p>
+                                <p>Sugerimos experimentar com valores diferentes, para visualizar outras formas de
+                                    resposta.<br />
+                                <div class="warning">Não se preocupe, essas informações <strong>NÃO</strong> serão
+                                    armazenadas.</div>
+                                </p>
                                 <div id="generator">
                                     <div id="yourTag">
                                         <svg></svg>
@@ -65,7 +73,7 @@
                                             <label>Informe seu sexo:</label>
                                             <input name="sexo" type="radio" /><span>Masculino</span>
                                             <input name="sexo" type="radio" checked /><span>Feminino</span>
-                                        </fieldset>                                        
+                                        </fieldset>
                                         <fieldset>
                                             <label>Qual é sua faixa de renda mensal familiar?</label>
                                             <select>
@@ -73,8 +81,8 @@
                                                 <option>Inferior a 1 salário mínimo</option>
                                                 <option>Entre 1 e 2 salários mínimos</option>
                                                 <option>Entre 2 e 3 salários mínimos</option>
-                                                <option>Entre 3 e 5 salários mínimos</option>                                                
-                                                <option>Entre 5 e 7 salários mínimos</option>                                                                                                
+                                                <option>Entre 3 e 5 salários mínimos</option>
+                                                <option>Entre 5 e 7 salários mínimos</option>
                                                 <option>Entre 7 e 10 salários mínimos</option>
                                                 <option>Entre 10 e 15 salários mínimos</option>
                                                 <option>Entre 15 e 20 salários mínimos</option>
@@ -105,9 +113,10 @@
                                 <h2 id="carousel-heading">
                                     E que outras histórias poderiam ser lidas com esses dados?
                                 </h2>
-                                <p>A seguir, é possível explorar a visualização de dados gerada a partir do perfil socioecônomico da Unicamp.</p>
+                                <p>A seguir, é possível explorar a visualização de dados gerada a partir do perfil
+                                    socioecônomico da Unicamp.</p>
                                 <button onclick="location.href='/explore'">Vamos explorar!</button>
-                                
+
                             </div>
                         </div>
                     </li>
@@ -117,15 +126,15 @@
     </div>
     <script>
         var splide;
-        document.addEventListener( 'DOMContentLoaded', function() {
-            splide = new Splide( '.splide', {
-                    arrows: false,
-                    pagination: false,
-                    width : '100vw',
-		            height: '100vh',
-                    drag: false
-                } ).mount();            
-        } );
+        document.addEventListener('DOMContentLoaded', function () {
+            splide = new Splide('.splide', {
+                arrows: false,
+                pagination: false,
+                width: '100vw',
+                height: '100vh',
+                drag: false
+            }).mount();
+        });
 
         tippy('#acoes-afirmativas', {
             content: 'Para saber mais sobre Ações Afirmativas, confira <a href="https://pp.nexojornal.com.br/glossario/A%C3%A7%C3%B5es-afirmativas" target ="blank">esse glossário do Nexo Jornal</a>.',
@@ -135,4 +144,5 @@
         });
     </script>
 </body>
+
 </html>
