@@ -16,6 +16,9 @@
     <script src="assets/js/splide.min.js"></script>
     <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/tippy-bundle.umd.min.js"></script>
+    <script src="../assets/js/d3.min.js"></script>
+    <script src="../assets/js/lodash.min.js"></script>
+    <script src="main.js"></script>    
 </head>
 <body>
     <div id="story">
@@ -37,8 +40,7 @@
                                     uma abordagem humanizada, seguindo as ideias do manifesto de Giorgia Lupi.<br />
 
                                 </p>
-                                <button onclick="splide.go('>')">Começar</button>
-
+                                <button onclick="splide.go('>'); drawTag();">Começar</button>
                             </div>
                         </div>
                     </li>
@@ -54,49 +56,48 @@
                                     armazenadas.</div>
                                 </p>
                                 <div id="generator">
-                                    <div id="yourTag">
-                                        <svg></svg>
+                                    <div id="yourTag">                                     
                                     </div>
                                     <div id="tagForm">
                                         <fieldset>
                                             <label>Como você se autodeclara com relacão a raça/cor?</label>
-                                            <select>
-                                                <option>Selecione...</option>
-                                                <option>Amarela</option>
-                                                <option>Branca</option>
-                                                <option>Indígena</option>
-                                                <option>Parda</option>
-                                                <option>Preta</option>
+                                            <select id="cor_raca_autodeclarada" onchange="drawTag()">
+                                                <option value="nd">Não declarada</option>
+                                                <option value="am">Amarela</option>
+                                                <option value="br">Branca</option>
+                                                <option value="in">Indígena</option>
+                                                <option value="pa">Parda</option>
+                                                <option value="pr">Preta</option>
                                             </select>
                                         </fieldset>
                                         <fieldset>
                                             <label>Informe seu sexo:</label>
-                                            <input name="sexo" type="radio" /><span>Masculino</span>
-                                            <input name="sexo" type="radio" checked /><span>Feminino</span>
+                                            <input name="sexo" type="radio" value="m" onclick="drawTag()" /><span>Masculino</span>
+                                            <input name="sexo" type="radio" value="f" checked onclick="drawTag()"/><span>Feminino</span>
                                         </fieldset>
                                         <fieldset>
                                             <label>Qual é sua faixa de renda mensal familiar?</label>
-                                            <select>
-                                                <option>Selecione...</option>
-                                                <option>Inferior a 1 salário mínimo</option>
-                                                <option>Entre 1 e 2 salários mínimos</option>
-                                                <option>Entre 2 e 3 salários mínimos</option>
-                                                <option>Entre 3 e 5 salários mínimos</option>
-                                                <option>Entre 5 e 7 salários mínimos</option>
-                                                <option>Entre 7 e 10 salários mínimos</option>
-                                                <option>Entre 10 e 15 salários mínimos</option>
-                                                <option>Entre 15 e 20 salários mínimos</option>
-                                                <option>Acima de 20 salários mínimos</option>
+                                            <select id="renda" onchange="drawTag()">
+                                                <option value="3">Inferior a 1 salário mínimo</option>
+                                                <option value="6">Entre 1 e 2 salários mínimos</option>
+                                                <option value="12" selected>Entre 2 e 3 salários mínimos</option>
+                                                <option value="18">Entre 3 e 5 salários mínimos</option>
+                                                <option value="36">Entre 5 e 7 salários mínimos</option>
+                                                <option value="48">Entre 7 e 10 salários mínimos</option>
+                                                <option value="60">Entre 10 e 15 salários mínimos</option>
+                                                <option value="70">Entre 15 e 20 salários mínimos</option>
+                                                <option value="80">Acima de 20 salários mínimos</option>
                                             </select>
                                         </fieldset>
                                         <fieldset>
                                             <label>Cursou escola pública durante o ensino médio?</label>
-                                            <input name="ensino_medio" type="radio" /><span>Sim</span>
-                                            <input name="ensino_medio" type="radio" checked /><span>Não</span>
+                                            <input name="ensino_medio" type="radio" value="t" onclick="drawTag()" /><span>Sim</span>
+                                            <input name="ensino_medio" type="radio" checked value="f" onclick="drawTag()" /><span>Não</span>
                                         </fieldset>
                                     </div>
                                 </div>
-                                <button onclick="splide.go('>')">Pronto</button>
+                                <!-- <button onclick="splide.go('>')">Pronto</button> -->
+                                <button onclick="splide.go('>');">Pronto</button>
                             </div>
                         </div>
                     </li>
