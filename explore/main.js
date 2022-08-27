@@ -89,7 +89,7 @@ d3.json('../data/alunos.json').then(d => {
     data = _.values(d);
 
     sizes = d3.scaleLinear()
-    .domain([d3.min(data, d => d.cestas_basicas), d3.max(data, d => d.cestas_basicas)])
+    .domain([d3.min(data, d => d.cestas_basicas), d3.max(data, d => d.cestas_basicas)]) // 1.29 e 82
     .range([.25, .75]);
 
     help = d3.select('#overlay');
@@ -314,7 +314,7 @@ function draw() {
             svg.append(d.sexo === 'm' ? 'circle' : 'rect')
             .attr('cx',gridCellSize/2)
             .attr('cy',gridCellSize/2)
-            .attr('r', d3.max([gridCellSize*sizes(d.cestas_basicas)/2 - 2, 1]))
+            .attr('r', d3.max([gridCellSize*sizes(d.cestas_basicas)/2 - 1, 1]))
             .attr('x', gridCellSize/2 - gridCellSize*sizes(d.cestas_basicas)*_RECT_OPT_CORR/2 + 2)
             .attr('y', gridCellSize/2 - gridCellSize*sizes(d.cestas_basicas)*_RECT_OPT_CORR/2 + 2)
             .attr('width', d3.max([gridCellSize*sizes(d.cestas_basicas)*_RECT_OPT_CORR - 4,1]))
