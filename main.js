@@ -10,9 +10,9 @@ palette = d3.scaleOrdinal()
 .range(['#F5524E','#B4B1E7','#59A14F','#2B94DD','#FDC361','#7E15FE','#112035']);
 
 
-function drawTag() {
+function drawTag(on, adaptive) {
     
-    d3.select('#yourTag > *').remove();
+    d3.select('#' + on +' > *').remove();
 
     let d = {
         'cestas_basicas' : d3.select("#renda").node().value,
@@ -21,15 +21,12 @@ function drawTag() {
         'cursou_ensino_medio_publico' : d3.select('input[name="ensino_medio"]:checked').node().value
     };
 
-
-    let svg = d3.select('#yourTag').append('svg').attr('viewBox', [0, 0, gridCellSize, gridCellSize]);
-
-    svg.append('rect')
-    .attr('x', '0')
-    .attr('y', '0')
-    .attr('width', '100%')
-    .attr('height', '100%')
-    .style('fill', '#112035');
+    let svg;
+    if (adaptive) {
+        svg = d3.select('#' + on).append('svg').attr('viewBox', [0, 0, gridCellSize, gridCellSize]);
+    } else {
+        svg = d3.select('#' + on).append('svg');
+    }
 
     svg.append(d.sexo === 'm' ? 'circle' : 'rect')
     .attr('cx',gridCellSize/2)
@@ -52,4 +49,22 @@ function drawTag() {
     .attr('height', d3.max([gridCellSize*sizes(d.cestas_basicas)*_RECT_OPT_CORR - 4,1]))
     .style('fill',  d.cursou_ensino_medio_publico === 'f' ? '#112035' : palette(d.cor_raca_autodeclarada))
     .style('stroke', d.cor_raca_autodeclarada === 'np' && d.cursou_ensino_medio_publico == 'f' ? '#FFF' : 'none');
+}
+
+function youAreHere() {
+
+    let you = d3.select('#thisIsYou');
+    you.transition()
+        .duration(800)
+        .style('opacity', '0')
+        .style('width', '20px')
+        .style('height', '20px').on('end', function() {
+            you.style('display', 'none');
+            let miniYou = d3.select('#thisIsMiniYou');
+            miniYou.transition()
+                .duration(2000)
+                .style('opacity', '100');
+        });
+
+
 }

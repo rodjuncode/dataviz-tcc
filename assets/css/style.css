@@ -367,3 +367,45 @@ label.filter:active:after {
   position: relative;
   top: 6px;
 }
+
+
+#becomeData {
+  background: #112035;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  display: flex;
+  height: 100%;
+  border: 1px solid #ccc;
+  padding: 0 30px 0 30px;
+  flex-wrap: wrap;
+}
+
+#thatIsEveryone {
+  background-image: url('../img/2022.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 500px;
+  padding: 0;
+  width: 900px;
+
+}
+
+#becomeData p {
+  color: #fff;
+  padding: 20px 0 20px 0;
+}
+
+#thisIsYou {
+  background: #112035;
+  float: left;
+  height: 300px;
+  width: 300px;
+}
+
+#thisIsMiniYou {
+  /* display: none; */
+  height: 20px;
+  width: 20px;
+  opacity: 0;
+}

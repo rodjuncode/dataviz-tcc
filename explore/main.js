@@ -105,7 +105,7 @@ d3.json('../data/alunos.json').then(d => {
 function closeHelp() {
     help.transition().duration(1000).style('opacity', 0).on('end', function() {
         help.style('display', 'none');
-    })
+    });
 }
 
 function openHelp() {
@@ -117,7 +117,7 @@ function sortViz(v) {
     alunos.sort(sort[currentSortField]['desc'])
         .transition().ease(d3.easeCubicInOut)
         // .duration(800)
-        .duration(1000)
+        .duration(500)
         .attr('transform', (d,i) => 'translate(' + (i%gridColumnsNumber)*gridCellSize + ',' + Math.floor(i/gridColumnsNumber)*gridCellSize + ')');
 }
 
