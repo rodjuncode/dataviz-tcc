@@ -381,6 +381,10 @@ label.filter:active:after {
   flex-wrap: wrap;
 }
 
+#becomeData div {
+  max-width: 900px;
+}
+
 #thatIsEveryone {
   background-image: url('../img/2022.png');
   background-repeat: no-repeat;
@@ -393,7 +397,7 @@ label.filter:active:after {
 
 #becomeData p {
   color: #fff;
-  padding: 20px 0 20px 0;
+  padding: 0px 0 5px 0;
 }
 
 #thisIsYou {

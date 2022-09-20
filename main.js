@@ -55,7 +55,7 @@ function youAreHere() {
 
     let you = d3.select('#thisIsYou');
     you.transition()
-        .duration(800)
+        .duration(1000)
         .style('opacity', '0')
         .style('width', '20px')
         .style('height', '20px').on('end', function() {
