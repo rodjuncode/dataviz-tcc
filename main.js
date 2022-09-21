@@ -53,16 +53,32 @@ function drawTag(on, adaptive) {
 
 function youAreHere() {
 
+    let everyone = d3.select('#thatIsEveryone');
+
+    let miniYou = d3.select('#thisIsMiniYou');
+    miniYou.style('display','block');
+
+    everyone.transition()
+        .duration(500)
+        .style('height', '500px').on('end', function() {
+            everyone.transition()
+            .duration(500)
+            .style('opacity', 1);
+    
+        });
+
+    d3.select('#showEveryone').style('display', 'none');
+    d3.select('#beginStories').style('display', 'inline-block');
+
     let you = d3.select('#thisIsYou');
     you.transition()
-        .duration(1000)
+        .duration(800)
         .style('opacity', '0')
         .style('width', '20px')
         .style('height', '20px').on('end', function() {
             you.style('display', 'none');
-            let miniYou = d3.select('#thisIsMiniYou');
             miniYou.transition()
-                .duration(2000)
+                .duration(500)
                 .style('opacity', '100');
         });
 

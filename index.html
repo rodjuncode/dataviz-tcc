@@ -50,8 +50,8 @@
                                 <h2 id="carousel-heading">
                                     Como seriam os seus dados?
                                 </h2>
-                                <p>Sugerimos experimentar com valores diferentes, para visualizar outras formas de
-                                    resposta.<br />
+                                <p>Todos os candidatos no Vestibular UNICAMP preenchem um questionário socio-econômico no momento da inscrição. 
+                                Supondo que você estivesse participando do processo eletivo, como seriam as suas respostas para essas perguntas? Propomos aqui uma forma de visualizar esses dados graficamente.<br />
                                 <div class="warning">Não se preocupe, essas informações <strong>NÃO</strong> serão
                                     armazenadas.</div>
                                 </p>
@@ -96,25 +96,27 @@
                                         </fieldset>
                                     </div>
                                 </div>
-                                <!-- <button onclick="splide.go('>')">Pronto</button> -->
-                                <button onclick="splide.go('>'); drawTag('thisIsYou', true); drawTag('thisIsMiniYou', false); youAreHere();">Pronto</button>
+                                <button onclick="splide.go('>'); drawTag('thisIsYou', true); drawTag('thisIsMiniYou', false);">Pronto</button>
                             </div>
                         </div>
                     </li>
                     <li class="splide__slide">
                         <div id="becomeData">
                             <div>
-                                <p>Se cada ingressante do Vestibular UNICAMP 2022 fosse representado com as mesmas regras, essa seria a visualização de todos eles, incluindo você:</p>
+                                <p>Certo! De acordo com o código visual proposto, o símbolo abaixo representaria as suas respostas ao questionário socio-econômico. Mas supondo que você fosse um ingressante do Vestibular UNICAMP 2022, como uma visualização dos símbolos de todos os aprovados?</p>
+                                <div id="thisIsYou"></div>
                                 <div id="thatIsEveryone">
-                                    <div id="thisIsYou"></div>
                                     <div id="thisIsMiniYou"></div>    
                                 </div>
-                                <button onclick="splide.go('>')">Continuar</button>                                
+
+                                <button id="showEveryone" onclick="drawTag('thisIsYou', true); drawTag('thisIsMiniYou', false); youAreHere();">Mostrar todos os alunos</button>
+                                <button id="beginStories" onclick="splide.go('>')">Continuar</button>                                
+                                <a href="#" onclick="splide.go('<');">Voltar</a>
                             </div>
-                            <!-- <button onclick="splide.go('>'); ">Continuar</button> -->
                         </div>
                     </li>
                     <li class="splide__slide">Histórias
+                        <button onclick="splide.go('<');">Voltar</button>                        
                         <button onclick="splide.go('>')">Começar</button>
                     </li>
                     <li class="splide__slide">

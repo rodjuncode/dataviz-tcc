@@ -148,7 +148,7 @@ select option {
 
 #filterTable p {
   margin: 5px 0px;
-  width: 80%;
+  width: 78%;
 }
 
 #sortNav {
@@ -164,7 +164,7 @@ select option {
 }
 
 #sortNav select {
-  font-size: 0.9em;
+  font-size: 0.85em;
 }
 
 #yearNav {
@@ -184,7 +184,7 @@ select option {
 
 #yearNav span#year {
   font-family: "Poppins", sans-serif;
-  font-size: 3.2em;
+  font-size: 3em;
   font-weight: 400;
   margin: 0;
   text-align: center;
@@ -194,7 +194,7 @@ select option {
   display: flex;
   flex-wrap: wrap;
   padding: 0 0 0 3px;
-  font-size: 0.8em;
+  font-size: 0.75em;
 }
 
 #tag .description label {
@@ -296,6 +296,10 @@ select option {
   border: 0;
 }
 
+#yourself div {
+  max-width: 800px;
+}
+
 #yourself fieldset label {
   display: block;
   font-size: 0.9em;
@@ -368,6 +372,22 @@ label.filter:active:after {
   top: 6px;
 }
 
+#whatIf {
+  background: #112035;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  display: flex;
+  height: 100%;
+  border: 1px solid #ccc;
+  padding: 0 30px 0 30px;
+  flex-wrap: wrap;
+}
+
+#whatIf #thisIsYourTag{
+  height: 300px;
+  width: 300px;  
+}
 
 #becomeData {
   background: #112035;
@@ -389,26 +409,51 @@ label.filter:active:after {
   background-image: url('../img/2022.png');
   background-repeat: no-repeat;
   background-size: 100%;
-  height: 500px;
+  /* height: 500px; */
+  height: 220px;
   padding: 0;
   width: 900px;
-
+  opacity: 0;
 }
 
 #becomeData p {
   color: #fff;
+  font-size: 1.1em;
   padding: 0px 0 5px 0;
+}
+
+#becomeData button {
+  background: #7e15fe;
+  border: 0;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  font-size: 1em;
+  padding: 20px;
+  margin: 27px 10px 0 0;
+}
+
+#becomeData button:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+#becomeData a {
+  color: #fff;
+}
+
+#beginStories {
+  display: none;
 }
 
 #thisIsYou {
   background: #112035;
   float: left;
-  height: 300px;
-  width: 300px;
+  height: 200px;
+  width: 200px;
 }
 
 #thisIsMiniYou {
-  /* display: none; */
+  display: none;
   height: 20px;
   width: 20px;
   opacity: 0;
