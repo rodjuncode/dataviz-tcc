@@ -103,7 +103,8 @@
                     <li class="splide__slide">
                         <div id="becomeData">
                             <div>
-                                <p>Certo! De acordo com o código visual proposto, o símbolo abaixo representaria as suas respostas ao questionário socio-econômico. Mas supondo que você fosse um ingressante do Vestibular UNICAMP 2022, como uma visualização dos símbolos de todos os aprovados?</p>
+                                <p class="step1">Certo! De acordo com o código visual proposto, o símbolo abaixo representaria as suas respostas ao questionário socio-econômico. Mas supondo que você fosse um ingressante do Vestibular UNICAMP 2022, como seria a visualização de todos os aprovados?</p>
+                                <p class="step2">Perfil socio-econômico dos ingressantes do Vestibular UNICAMP 2022 (incluindo você)</p>
                                 <div id="thisIsYou"></div>
                                 <div id="thatIsEveryone">
                                     <div id="thisIsMiniYou"></div>    
@@ -115,10 +116,55 @@
                             </div>
                         </div>
                     </li>
-                    <li class="splide__slide">Histórias
-                        <button onclick="splide.go('<');">Voltar</button>                        
-                        <button onclick="splide.go('>')">Começar</button>
-                    </li>
+                    <li class="splide__slide">
+                        <div id="nem_sempre" class="simple">
+                            <div>
+                                <h2>Agora, se compararmos o mesmo tipo de visualização para vestibulares em anos diferentes, poderemos verificar algumas coisas interessantes...</h2>
+                                <button onclick="splide.go('>')">Continuar</button>
+                                <a href="#" onclick="splide.go('<');">Voltar</a>
+                            </div>
+                        </div>
+                    </li>           
+                    <li class="splide__slide">
+                        <div id="descobertas01" class="descobertas">
+                            <div>
+                                <img src="assets/img/2000-2022.png" />
+                                <button onclick="splide.go('>')">Continuar</button>
+                                <a href="#" onclick="splide.go('<');">Voltar</a>
+                            </div>
+                        </div>
+                    </li>    
+                    <li class="splide__slide">
+                        <div id="descobertas02" class="descobertas">
+                            <div>
+                                <p>Em 2005 foi implementada a primeira Ação Afirmartiva no vestibular UNICAMP: o Programa de Ação Afirmativa e Inclusão Social (PAAIS), programa que beneficia candidatos que estudaram na rede pública de ensino. Ao ocultar os indivíduos beneficiados pelo programa, fica nítido quais grupos de raça/cor autodeclarada foram mais impactados pela Ação Afirmativa, entre os ingressantes daquele ano.</p>
+                                <img src="assets/img/2005-com-paais.png" />
+                                <button onclick="splide.go('>')">Continuar</button>
+                                <a href="#" onclick="splide.go('<');">Voltar</a>
+                                <span><p>Ocultar/exibir Ingressantes PAAIS</p><input type="checkbox" id="enem-unicamp" checked onclick="togglePaais(this.checked);"/><label class="filter" for="enem-unicamp"></label></span>
+                            </div>
+                        </div>
+                    </li>     
+                    <li class="splide__slide">
+                        <div id="descobertas03" class="descobertas">
+                            <div>
+                                <p>Em 2019, o vestibular UNICAMP implementa pela primeira vez o sistema de Cotas, o Vestibular Indígena, as Vagas Olímpicas e a integração com o ENEM. São quatro novas iniciativas somadas aos já existentes PAAIS e PROFIS. A visualização simultânea dos ingressantes dos anos de 2003 e 2019 mostra um aumento de alunos que se autodeclaram pretos, pardos e indígenas.</p>
+                                <img src="assets/img/2003-2019.png" />
+                                <button onclick="splide.go('>')">Continuar</button>
+                                <a href="#" onclick="splide.go('<');">Voltar</a>
+                            </div>
+                        </div>
+                    </li>                            
+                    <li class="splide__slide">
+                        <div id="descobertas04" class="descobertas">
+                            <div>
+                                <p>Voltando a 2022 e dessa vez ordenando os ingressantes por renda familiar (da maior para a menor), ao ocultar os alunos que foram beneficiados por alguma Ação Afirmativa, torna-se claro o impacto desses programas em alunos com rendas familiares menores.</p>
+                                <img src="assets/img/2022-sem-acoes-afirmativas.png" />
+                                <button onclick="splide.go('>')">Continuar</button>
+                                <a href="#" onclick="splide.go('<');">Voltar</a>
+                            </div>
+                        </div>
+                    </li>                                                                      
                     <li class="splide__slide">
                         <div id="explorar" class="simple">
                             <div>
@@ -129,7 +175,7 @@
                                 <p>A seguir, é possível explorar a visualização de dados gerada a partir do perfil
                                     socioecônomico da Unicamp.</p>
                                 <button onclick="location.href='/explore'">Vamos explorar!</button>
-
+                                <a href="#" onclick="splide.go('<');">Voltar</a>
                             </div>
                         </div>
                     </li>
