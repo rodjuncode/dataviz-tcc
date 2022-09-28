@@ -146,3 +146,13 @@ function togglePaais(on) {
     );
   }
 }
+
+function openHelp() {
+  d3.select('#overlay').style('display', 'flex').transition().duration(1000).style('opacity', 1);
+}
+
+function closeHelp() {
+  d3.select('#overlay').transition().duration(1000).style('opacity', 0).on('end', function() {
+    d3.select('#overlay').style('display', 'none');
+  });
+}

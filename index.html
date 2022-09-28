@@ -21,6 +21,19 @@
     <script src="main.js"></script>    
 </head>
 <body>
+    <div id="overlay">
+        <div id="modal-help">
+            <h1>Como ler os símbolos?<span onclick="javascript: closeHelp();">X</span></h1>
+            <h4 class="no-border">Renda familiar</h4>
+                <img src="../assets/img/legendas/renda.png" />
+            <h4>Cor/raça autodeclarada</h4>
+                <img src="../assets/img/legendas/cor_raca.png" />
+            <h4>Sexo</h4>
+                <img src="../assets/img/legendas/sexo.png" />
+            <h4>Ensino/médico público</h4>
+                <img src="../assets/img/legendas/ensino_medio.png" />            
+        </div>
+    </div>    
     <div id="story">
         <section class="splide" aria-labelledby="carousel-heading">
             <div class="splide__track">
@@ -113,6 +126,7 @@
                                 <button id="showEveryone" onclick="drawTag('thisIsYou', true); drawTag('thisIsMiniYou', false); youAreHere();">Mostrar todos os alunos</button>
                                 <button id="beginStories" onclick="splide.go('>')">Continuar</button>                                
                                 <a href="#" onclick="splide.go('<');">Voltar</a>
+                                <i id="help" class="ri-question-fill introHelp" onclick="openHelp();"></i>
                             </div>
                         </div>
                     </li>
@@ -131,6 +145,7 @@
                                 <img src="assets/img/2000-2022.png" />
                                 <button onclick="splide.go('>')">Continuar</button>
                                 <a href="#" onclick="splide.go('<');">Voltar</a>
+                                <i id="help" class="ri-question-fill introHelp" onclick="openHelp();"></i>                                
                             </div>
                         </div>
                     </li>    
@@ -142,6 +157,7 @@
                                 <button onclick="splide.go('>')">Continuar</button>
                                 <a href="#" onclick="splide.go('<');">Voltar</a>
                                 <span><p>Ocultar/exibir Ingressantes PAAIS</p><input type="checkbox" id="enem-unicamp" checked onclick="togglePaais(this.checked);"/><label class="filter" for="enem-unicamp"></label></span>
+                                <i id="help" class="ri-question-fill introHelp" onclick="openHelp();"></i>                                
                             </div>
                         </div>
                     </li>     
@@ -152,6 +168,7 @@
                                 <img src="assets/img/2003-2019.png" />
                                 <button onclick="splide.go('>')">Continuar</button>
                                 <a href="#" onclick="splide.go('<');">Voltar</a>
+                                <i id="help" class="ri-question-fill introHelp" onclick="openHelp();"></i>                                
                             </div>
                         </div>
                     </li>                            
@@ -162,6 +179,7 @@
                                 <img src="assets/img/2022-sem-acoes-afirmativas.png" />
                                 <button onclick="splide.go('>')">Continuar</button>
                                 <a href="#" onclick="splide.go('<');">Voltar</a>
+                                <i id="help" class="ri-question-fill introHelp" onclick="openHelp();"></i>                                
                             </div>
                         </div>
                     </li>                                                                      
@@ -173,7 +191,7 @@
                                     E que outras histórias poderiam ser lidas com esses dados?
                                 </h2>
                                 <p>A seguir, é possível explorar a visualização de dados gerada a partir do perfil
-                                    socioecônomico da Unicamp.</p>
+                                    <br />socioecônomico da Unicamp.</p>
                                 <button onclick="location.href='https://rodjuncode.github.io/dataviz-tcc/explore'">Vamos explorar!</button>
                                 <a href="#" onclick="splide.go('<');">Voltar</a>
                             </div>

@@ -521,3 +521,11 @@ button:hover {
   margin-right: 5px;
   top: -6px;
 }
+
+#help.introHelp {
+  color: #fff;
+  font-size: 3em;
+  float: right;
+  position: relative;
+  top: 32px;
+}
