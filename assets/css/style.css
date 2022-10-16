@@ -522,10 +522,35 @@ button:hover {
   top: -6px;
 }
 
-#help.introHelp {
+div.introHelp {
   color: #fff;
-  font-size: 3em;
+  font-size: 1.5em;
   float: right;
   position: relative;
-  top: 32px;
+  top: 35px;
+  
+}
+
+div.introHelp:hover {
+  opacity: 0.3;
+  cursor: pointer;
+}
+
+
+div.introHelp legend {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.7em;
+  float: right;
+  position: relative;
+  top: 10px;
+
+}
+
+#filterTable span {
+  font-size: 0.7em;
+}
+
+#filterTable span:hover {
+  opacity: 0.3;
+  cursor: pointer;
 }

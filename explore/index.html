@@ -10,6 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;800&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="../assets/fonts/remixicon.css">
     <link rel="stylesheet" href="../assets/css/style.css">
+    <script src="../assets/js/popper.min.js"></script>
+    <script src="../assets/js/tippy-bundle.umd.min.js"></script>
     <script src="../assets/js/d3.min.js"></script>
     <script src="../assets/js/lodash.min.js"></script>
     <script src="main.js"></script>
@@ -49,12 +51,12 @@
             <div id="filterNav">
                 <label>Filtrar por:</label>
                 <div id="filterTable">
-                    <p class="enem-unicamp">ENEM-Unicamp</p><input type="checkbox" id="enem-unicamp" checked onclick="filterViz(this.id, this.checked);"/><label class="filter" for="enem-unicamp">Toggle</label>
-                    <p class="profis">PROFIS</p><input type="checkbox" id="profis" checked onclick="filterViz(this.id, this.checked);"/><label class="filter" for="profis">Toggle</label>
-                    <p class="vestibular-indigena">Vestibular indígena</p><input type="checkbox" id="vestibular-indigena" checked onclick="filterViz(this.id, this.checked);"/><label class="filter" for="vestibular-indigena">Toggle</label>
-                    <p class="vagas-olimpicas">Vagas Olímpicas</p><input type="checkbox" id="vagas-olimpicas" checked onclick="filterViz(this.id, this.checked);"/><label class="filter" for="vagas-olimpicas">Toggle</label>
-                    <p class="paais">PAAIS</p><input type="checkbox" id="paais" checked onclick="filterViz(this.id, this.checked);"/><label class="filter" for="paais">Toggle</label>
-                    <p class="cotas">Cotas</p><input type="checkbox" id="cotas" checked onclick="filterViz(this.id, this.checked);"/><label class="filter" for="cotas">Toggle</label>
+                    <p class="enem-unicamp">ENEM-Unicamp <span id="aa-enem-unicamp">(?)</span></p><input type="checkbox" id="enem-unicamp" checked onclick="filterViz(this.id, this.checked);"/><label class="filter" for="enem-unicamp">Toggle</label>
+                    <p class="profis">PROFIS <span id="aa-profis">(?)</span></p><input type="checkbox" id="profis" checked onclick="filterViz(this.id, this.checked);"/><label class="filter" for="profis">Toggle</label>
+                    <p class="vestibular-indigena">Vestibular indígena <span id="aa-vestibular-indigena">(?)</span></p><input type="checkbox" id="vestibular-indigena" checked onclick="filterViz(this.id, this.checked);"/><label class="filter" for="vestibular-indigena">Toggle</label>
+                    <p class="vagas-olimpicas">Vagas Olímpicas <span id="aa-vagas-olimpicas">(?)</span></p><input type="checkbox" id="vagas-olimpicas" checked onclick="filterViz(this.id, this.checked);"/><label class="filter" for="vagas-olimpicas">Toggle</label>
+                    <p class="paais">PAAIS <span id="aa-paais">(?)</span></p><input type="checkbox" id="paais" checked onclick="filterViz(this.id, this.checked);"/><label class="filter" for="paais">Toggle</label>
+                    <p class="cotas">Cotas <span id="aa-cotas">(?)</span></p><input type="checkbox" id="cotas" checked onclick="filterViz(this.id, this.checked);"/><label class="filter" for="cotas">Toggle</label>
                 </div>
             </div>            
             <div id="tag">
@@ -64,6 +66,25 @@
             </div>
         </div>        
     </div>
-
+    <script>
+        tippy('#aa-enem-unicamp', {
+            content: 'Cerca de 20% das vagas do vestibular Unicamp são reservadas para alunos que utilizam a sua nota do ENEM no processo seletivo, em edital separado.',
+        });
+        tippy('#aa-profis', {
+            content: 'Alunos com alto rendimento, vindos do ensino público de Campinas, que entram em curso preparatório para a universidade, e depois conseguem vaga automática em um curso de graduação.',
+        });        
+        tippy('#aa-vestibular-indigena', {
+            content: 'Vagas extras, com prova específica para membros de comunidades indígenas.',
+        });  
+        tippy('#aa-vagas-olimpicas', {
+            content: 'Vagas extras, para alunos que tiveram desempenho ótimo em olímpiadas científicas.',
+        });          
+        tippy('#aa-paais', {
+            content: 'Pontuação extra para o vestibular regular Unicamp ou Enem-Unicamp, para alunos que cursaram integralmente o ensino fundamental II e/ou ensino médio em escolas públicas.',
+        });          
+        tippy('#aa-cotas', {
+            content: 'Vagas reservadas para candidatos que se autodeclaram pardos ou pretos, no vestibular regular Unicamp e Enem-Unicamp.',
+        });                  
+    </script>
 </body>
 </html>
